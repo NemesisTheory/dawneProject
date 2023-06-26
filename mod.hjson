@@ -1,6 +1,8 @@
 #the mod name as displayed in-game
 displayName: "dawneProject"
 
+subtitle: "you are fuck"
+
 #the internal name of your mod
 name: "dawne-project"
 
@@ -8,7 +10,7 @@ name: "dawne-project"
 author: "NemesisTheory (ForwardUntoDawn)"
 
 #the fully qualified main class of the mod
-main: "dawne.DawneProject"
+main: "DawneProject.DawneProject"
 
 #the mod description as seen in the mod dialog
 description: "amongi \n\n\nyou are fuck"
@@ -17,7 +19,7 @@ description: "amongi \n\n\nyou are fuck"
 version: 1.0
 
 #the minimum game build required to run this mod
-minGameVersion: 140
+minGameVersion: 143.1
 
 #this is a java mod
 java: true
