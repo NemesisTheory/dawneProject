@@ -34,7 +34,7 @@ public class DawneItems {
         caris = new Item("caris", Color.valueOf("7973d3")){{
             flammability = 0f;
             cost = 1.1f;
-            hardness = 3;
+            hardness = 1;
             explosiveness = 0f;
             radioactivity = 0f;
         }};

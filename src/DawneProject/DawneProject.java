@@ -11,5 +11,4 @@ public class DawneProject extends Mod{
         DawneItems.load();
         DawneBlocks.load();
     }
-
 }

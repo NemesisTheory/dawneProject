@@ -12,36 +12,41 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.blocks.defense.*;
 
 import static mindustry.type.ItemStack.with;
 
 public class DawneBlocks {
     public static Block
 
-            //distribution - Dawne
+    //distribution - Dawne
 
-            ErumConveyor, ErumJunction, ErumBridge, ErumRouter, ErumOverflow, ErumUnderflow, ErumSorter, ErumInvertedSorter,
+    erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
 
     //production - Dawne
 
-    CarisPress,
+    carisPress,
 
     //pewpews - Dawne
 
-    Fracture, Broadside;
+    fracture, Broadside,
+
+    //wall - Dawne
+
+    verentWall, largeVerentWall;
 
     public static void load() {
-        ErumConveyor = new Conveyor("erum-conveyor") {{
+        erumConveyor = new Conveyor("erum-conveyor") {{
             requirements(Category.distribution, with(DawneItems.erum, 1));
             health = 5;
             speed = 0.03f;
             displayedSpeed = 4.2f;
             researchCost = with(Items.scrap, 5);
-            junctionReplacement = ErumJunction;
-            bridgeReplacement = ErumBridge;
+            junctionReplacement = erumJunction;
+            bridgeReplacement = erumBridge;
         }};
 
-        ErumJunction = new Junction("erum-junction") {{
+        erumJunction = new Junction("erum-junction") {{
             requirements(Category.distribution, with(DawneItems.erum, 2));
             health = 5;
             speed = 12f;
@@ -49,7 +54,7 @@ public class DawneBlocks {
             buildCostMultiplier = 3f;
         }};
 
-        ErumBridge = new BufferedItemBridge("erum-bridge") {{
+        erumBridge = new BufferedItemBridge("erum-bridge") {{
             requirements(Category.distribution, with(DawneItems.erum, 4, DawneItems.caris, 2));
             health = 5;
             range = 3;
@@ -58,39 +63,39 @@ public class DawneBlocks {
             bufferCapacity = 3;
         }};
 
-        ErumRouter = new Router("erum-router") {{
+        erumRouter = new Router("erum-router") {{
             requirements(Category.distribution, with(DawneItems.erum, 2));
             health = 5;
             buildCostMultiplier = 2f;
         }};
 
-        ErumOverflow = new OverflowGate("erum-overflow") {{
+        erumOverflow = new OverflowGate("erum-overflow") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
             health = 5;
             buildCostMultiplier = 1f;
         }};
 
-        ErumUnderflow = new OverflowGate("erum-underflow") {{
-            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 5;
-            buildCostMultiplier = 1f;
-            invert = true;
-        }};
-
-        ErumSorter = new Sorter("erum-sorter") {{
-            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 5;
-            buildCostMultiplier = 1f;
-        }};
-
-        ErumInvertedSorter = new Sorter("erum-inverted-sorter") {{
+        erumUnderflow = new OverflowGate("erum-underflow") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
             health = 5;
             buildCostMultiplier = 1f;
             invert = true;
         }};
 
-        CarisPress = new GenericCrafter("caris-press") {{
+        erumSorter = new Sorter("erum-sorter") {{
+            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
+            health = 5;
+            buildCostMultiplier = 1f;
+        }};
+
+        erumInvertedSorter = new Sorter("erum-inverted-sorter") {{
+            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
+            health = 5;
+            buildCostMultiplier = 1f;
+            invert = true;
+        }};
+
+        carisPress = new GenericCrafter("caris-press") {{
             requirements(Category.production, with(DawneItems.erum, 70));
             outputItem = new ItemStack(DawneItems.caris, 2);
             craftEffect = Fx.smeltsmoke;
@@ -99,11 +104,11 @@ public class DawneBlocks {
             hasItems = true;
         }};
 
-        Fracture = new ItemTurret("fracture") {
+        fracture = new ItemTurret("fracture") {
             {
                 requirements(Category.turret, with(DawneItems.erum, 40, DawneItems.caris, 15));
                 Effect sfe = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
-                health = 50;
+                health = 20;
                 recoil = 3f;
                 reload = 40f;
                 range = 110;
@@ -136,7 +141,7 @@ public class DawneBlocks {
                             hitEffect = despawnEffect = Fx.hitBulletColor;
                             buildingDamageMultiplier = 0.5f;
                         }},
-                        DawneItems.caris, new BasicBulletType(9f, 25) {
+                        DawneItems.caris, new BasicBulletType(9f, 22) {
                             {
                                 splashDamage = 4;
                                 splashDamageRadius = 12.4f;
@@ -161,5 +166,19 @@ public class DawneBlocks {
                 );
             }
         };
+
+        verentWall = new Wall("verent-wall"){{
+            requirements(Category.defense, with(DawneItems.verent, 5));
+            size = 1;
+            health = 40;
+            researchCostMultiplier = 0.1f;
+        }};
+
+        largeVerentWall = new Wall("large-verent-wall"){{
+            requirements(Category.defense, with(DawneItems.verent, 20));
+            size = 2;
+            health = 185;
+            researchCostMultiplier = 0.1f;
+        }};
     }
 }
