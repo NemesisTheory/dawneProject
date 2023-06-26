@@ -19,6 +19,7 @@ public class DawneItems {
             flammability = 0f;
             cost = 1.0f;
             hardness = 2;
+            explosiveness = 0f;
             radioactivity = 0f;
         }};
 
@@ -26,13 +27,15 @@ public class DawneItems {
             flammability = 0.15f;
             cost = 1.0f;
             hardness = 1;
+            explosiveness = 0.20f;
             radioactivity = 0f;
         }};
 
-        caris = new Item("caris", Color.valueOf("d39573")){{
+        caris = new Item("caris", Color.valueOf("7973d3")){{
             flammability = 0f;
             cost = 1.1f;
             hardness = 3;
+            explosiveness = 0f;
             radioactivity = 0f;
         }};
 
