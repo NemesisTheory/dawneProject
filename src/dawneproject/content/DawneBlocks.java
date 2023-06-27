@@ -23,10 +23,10 @@ import static mindustry.type.ItemStack.with;
 public class DawneBlocks {
     public static Block
 
-    //distribution - Dawne
+            //distribution - Dawne
 
-    erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
-    aspecTransporter,
+            erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
+            aspecTransporter,
 
     //production - Dawne
 
@@ -38,7 +38,7 @@ public class DawneBlocks {
 
     //pewpews - Dawne
 
-    fracture, broadside,
+    fracture, rupture, broadside,
 
     //wall - Dawne
 
@@ -104,7 +104,7 @@ public class DawneBlocks {
             invert = true;
         }};
 
-        aspecTransporter = new ItemBridge("aspec-transporter"){{
+        aspecTransporter = new ItemBridge("aspec-transporter") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.aspec, 3));
             health = 5;
             range = 3;
@@ -130,7 +130,7 @@ public class DawneBlocks {
             consumeItems(with(DawneItems.verent, 2));
         }};
 
-        kasevForge = new GenericCrafter("kasev-forge"){{
+        kasevForge = new GenericCrafter("kasev-forge") {{
             requirements(Category.crafting, with(DawneItems.erum, 35, DawneItems.caris, 60, DawneItems.vasil, 40));
             craftEffect = Fx.smeltsmoke;
             outputItem = new ItemStack(DawneItems.kasev, 4);
@@ -147,7 +147,7 @@ public class DawneBlocks {
             consumePower(0.25f);
         }};
 
-        actiumSmelter = new GenericCrafter("actium-smelter"){{
+        actiumSmelter = new GenericCrafter("actium-smelter") {{
             requirements(Category.crafting, with(DawneItems.erum, 85, DawneItems.caris, 20, DawneItems.vasil, 45));
             health = 20;
             hasPower = true;
@@ -162,7 +162,7 @@ public class DawneBlocks {
         }};
 
         //TODO improve power gen blocks
-        thermalCondenser = new ThermalGenerator("thermal-condenser"){{
+        thermalCondenser = new ThermalGenerator("thermal-condenser") {{
             requirements(Category.power, with(DawneItems.erum, 30, DawneItems.caris, 5));
             health = 35;
             generateEffect = Fx.redgeneratespark;
@@ -173,7 +173,7 @@ public class DawneBlocks {
             size = 2;
         }};
 
-        thermonuclearReactor = new NuclearReactor("thermonuclear-reactor"){{
+        thermonuclearReactor = new NuclearReactor("thermonuclear-reactor") {{
             requirements(Category.power, with(DawneItems.erum, 85, DawneItems.caris, 25, DawneItems.vasil, 40, DawneItems.actium, 30));
             health = 50;
             ambientSound = Sounds.hum;
@@ -189,7 +189,8 @@ public class DawneBlocks {
             consumeLiquid(DawneLiquids.camberCoolant, heating / coolantPower).update(false);
         }};
 
-        fracture = new ItemTurret("fracture") {{
+        fracture = new ItemTurret("fracture") {
+            {
                 requirements(Category.turret, with(DawneItems.erum, 70, DawneItems.caris, 15));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
                 health = 20;
@@ -227,7 +228,8 @@ public class DawneBlocks {
                             hitEffect = despawnEffect = Fx.hitBulletColor;
                             buildingDamageMultiplier = 0.2f;
                         }},
-                        DawneItems.caris, new BasicBulletType(9f, 16) {{
+                        DawneItems.caris, new BasicBulletType(9f, 16) {
+                            {
                                 splashDamage = 4;
                                 splashDamageRadius = 12.5f;
                                 lifetime = 17.5f;
@@ -253,32 +255,96 @@ public class DawneBlocks {
             }
         };
 
-        erumWall = new Wall("erum-wall"){{
-            requirements(Category.defense, with(DawneItems.erum, 8));
-            size = 1;
-            health = 35;
-            researchCostMultiplier = 0.1f;
-        }};
+        rupture = new ItemTurret("rupture") {{
+                requirements(Category.turret, with(DawneItems.erum, 80, DawneItems.caris, 30));
+                health = 35;
+                recoil = 2f;
+                reload = 12f;
+                shootCone = 1f;
+                inaccuracy = 0.5f;
+                targetAir = true;
+                targetGround = true;
+                coolantMultiplier = 1f;
+                hasLiquids = true;
+                shake = 1f;
+                size = 3;
+                rotateSpeed = 2.5f;
+                researchCostMultiplier = 0.06f;
+                ammo(
+                        DawneItems.verent, new BasicBulletType() {{
+                                damage = 3;
+                                pierce = true;
+                                pierceCap = 3;
+                                speed = 4.25f;
+                                width = height = 16;
+                                shrinkY = 0.3f;
+                                velocityRnd = 0.11f;
+                                collidesGround = false;
+                                collidesTiles = false;
+                                shootEffect = Fx.shootBig2;
+                                smokeEffect = Fx.shootSmokeDisperse;
+                                backColor = trailColor = hitColor = frontColor = Color.valueOf("c48282");
+                                trailChance = 0.44f;
+                                ammoMultiplier = 4f;
 
-        largeErumWall = new Wall("large-erum-wall"){{
-            requirements(Category.defense, with(DawneItems.erum, 32));
-            size = 2;
-            health = 160;
-            researchCostMultiplier = 0.1f;
-        }};
+                                lifetime = 17f;
+                                rotationOffset = 90f;
+                                trailRotation = true;
+                                trailEffect = Fx.disperseTrail;
 
-        vasilWall = new Wall("vasil-wall"){{
-            requirements(Category.defense, with(DawneItems.caris, 4, DawneItems.vasil, 8));
-            size = 1;
-            health = 85;
-            researchCostMultiplier = 0.2f;
-        }};
+                                hitEffect = despawnEffect = Fx.hitBulletColor;
+                            }},
+                        DawneItems.vasil, new BasicBulletType(){{
+                            damage = 12;
+                            speed = 4.25f;
+                            width = height = 16;
+                            shrinkY = 0.3f;
+                            velocityRnd = 0.11f;
+                            collidesGround = false;
+                            collidesTiles = false;
+                            shootEffect = Fx.shootBig2;
+                            smokeEffect = Fx.shootSmokeDisperse;
+                            backColor = trailColor = hitColor = frontColor = Color.valueOf("bad3f5");
+                            trailChance = 0.44f;
+                            ammoMultiplier = 4f;
+                            reloadMultiplier = 0.75f;
 
-        largeVasilWall = new Wall("large-vasil-wall"){{
-            requirements(Category.defense, with(DawneItems.caris, 16, DawneItems.vasil, 32));
-            size = 2;
-            health = 350;
-            researchCostMultiplier = 0.2f;
-        }};
+                            lifetime = 17f;
+                            rotationOffset = 90f;
+                            trailRotation = true;
+                            trailEffect = Fx.disperseTrail;
+
+                            hitEffect = despawnEffect = Fx.hitBulletColor;
+                }});
+
+                erumWall = new Wall("erum-wall") {{
+                    requirements(Category.defense, with(DawneItems.erum, 8));
+                    size = 1;
+                    health = 35;
+                    researchCostMultiplier = 0.1f;
+                }};
+
+                largeErumWall = new Wall("large-erum-wall") {{
+                    requirements(Category.defense, with(DawneItems.erum, 32));
+                    size = 2;
+                    health = 160;
+                    researchCostMultiplier = 0.1f;
+                }};
+
+                vasilWall = new Wall("vasil-wall") {{
+                    requirements(Category.defense, with(DawneItems.caris, 4, DawneItems.vasil, 8));
+                    size = 1;
+                    health = 85;
+                    researchCostMultiplier = 0.2f;
+                }};
+
+                largeVasilWall = new Wall("large-vasil-wall") {{
+                    requirements(Category.defense, with(DawneItems.caris, 16, DawneItems.vasil, 32));
+                    size = 2;
+                    health = 350;
+                    researchCostMultiplier = 0.2f;
+                }};
+            }
+        };
     }
 }
