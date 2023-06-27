@@ -13,7 +13,6 @@ import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.power.NuclearReactor;
 import mindustry.world.blocks.power.ThermalGenerator;
-import mindustry.world.blocks.production.Fracker;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.defense.*;
 import mindustry.gen.Sounds;
@@ -23,10 +22,10 @@ import static mindustry.type.ItemStack.with;
 public class DawneBlocks {
     public static Block
 
-            //distribution - Dawne
+    //distribution - Dawne
 
-            erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
-            aspecTransporter,
+    erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
+    aspecTransporter,
 
     //production - Dawne
 
@@ -199,7 +198,7 @@ public class DawneBlocks {
                 range = 120;
                 shootCone = 1f;
                 inaccuracy = 0.5f;
-                targetAir = true;
+                targetAir = false;
                 targetGround = true;
                 coolantMultiplier = 3f;
                 hasLiquids = true;
@@ -260,19 +259,19 @@ public class DawneBlocks {
                 health = 35;
                 recoil = 2f;
                 reload = 12f;
-                shootCone = 1f;
-                inaccuracy = 0.5f;
+                shootCone = 8f;
+                inaccuracy = 2f;
                 targetAir = true;
-                targetGround = true;
+                targetGround = false;
                 coolantMultiplier = 1f;
                 hasLiquids = true;
                 shake = 1f;
-                size = 3;
+                size = 4;
                 rotateSpeed = 2.5f;
                 researchCostMultiplier = 0.06f;
                 ammo(
                         DawneItems.verent, new BasicBulletType() {{
-                                damage = 3;
+                                damage = 5;
                                 pierce = true;
                                 pierceCap = 3;
                                 speed = 4.25f;
@@ -287,7 +286,7 @@ public class DawneBlocks {
                                 trailChance = 0.44f;
                                 ammoMultiplier = 4f;
 
-                                lifetime = 17f;
+                                lifetime = 34f;
                                 rotationOffset = 90f;
                                 trailRotation = true;
                                 trailEffect = Fx.disperseTrail;
@@ -309,7 +308,7 @@ public class DawneBlocks {
                             ammoMultiplier = 4f;
                             reloadMultiplier = 0.75f;
 
-                            lifetime = 17f;
+                            lifetime = 34f;
                             rotationOffset = 90f;
                             trailRotation = true;
                             trailEffect = Fx.disperseTrail;
