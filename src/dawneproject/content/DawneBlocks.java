@@ -229,8 +229,8 @@ public class DawneBlocks {
                         }},
                         DawneItems.caris, new BasicBulletType(9f, 16) {{
                                 splashDamage = 4;
-                                splashDamageRadius = 17.5f;
-                                lifetime = 2.5f;
+                                splashDamageRadius = 12.5f;
+                                lifetime = 17.5f;
                                 width = 12f;
                                 hitSize = 7f;
                                 height = 20f;
