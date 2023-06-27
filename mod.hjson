@@ -4,19 +4,19 @@ displayName: "dawneProject"
 subtitle: "you are fuck"
 
 #the internal name of your mod
-name: "dawne-project"
+name: "dawneproject"
 
 #your name
 author: "NemesisTheory (ForwardUntoDawn)"
 
 #the fully qualified main class of the mod
-main: "DawneProject.DawneProject"
+main: "dawneproject.DawneProject"
 
 #the mod description as seen in the mod dialog
 description: "amongi \n\n\nyou are fuck"
 
 #the mod version
-version: 1.0
+version: 0.2
 
 #the minimum game build required to run this mod
 minGameVersion: 143.1

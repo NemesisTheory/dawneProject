@@ -1,7 +1,7 @@
-package DawneProject;
+package dawneproject;
 
 import mindustry.mod.*;
-import DawneProject.content.*;
+import dawneproject.content.*;
 public class DawneProject extends Mod{
 
     public DawneProject() {}
@@ -9,6 +9,7 @@ public class DawneProject extends Mod{
     @Override
     public void loadContent(){
         DawneItems.load();
+        DawneLiquids.load();
         DawneBlocks.load();
     }
 }
