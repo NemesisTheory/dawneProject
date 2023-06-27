@@ -106,14 +106,19 @@ public class DawneBlocks {
         placeHolderNameForAPhaseBridge = new ItemBridge("placeholder-name-for-a-phase-bridge"){{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.placeholderName, 3));
             health = 5;
+            range = 8;
             buildCostMultiplier = 1f;
             conductivePower = true;
+            hasPower = true;
+            pulse = true;
+            arrowPeriod = 0.9f;
+            arrowTimeScl = 2.75f;
 
             consumePower(0.004f);
         }};
 
         carisPress = new GenericCrafter("caris-press") {{
-            requirements(Category.production, with(DawneItems.erum, 40));
+            requirements(Category.crafting, with(DawneItems.erum, 40));
             health = 15;
             outputItem = new ItemStack(DawneItems.caris, 2);
             craftEffect = Fx.smeltsmoke;
@@ -125,8 +130,9 @@ public class DawneBlocks {
         }};
 
         actiumSmelter = new GenericCrafter("actium-smelter"){{
-            requirements(Category.production, with(DawneItems.erum, 85, DawneItems.caris, 20, DawneItems.vasil, 45));
+            requirements(Category.crafting, with(DawneItems.erum, 85, DawneItems.caris, 20, DawneItems.vasil, 45));
             health = 20;
+            hasPower = true;
             outputItem = new ItemStack(DawneItems.actium, 3);
             craftEffect = Fx.smeltsmoke;
             craftTime = 150f;
@@ -153,8 +159,11 @@ public class DawneBlocks {
         thermonuclearReactor = new ThermalGenerator("thermonuclear-reactor"){{
             requirements(Category.power, with(DawneItems.erum, 85, DawneItems.caris, 25, DawneItems.vasil, 40, DawneItems.actium, 30));
             health = 50;
-            powerProduction = 3;
+            ambientSound = Sounds.hum;
+            ambientSoundVolume = 0.04f;
+            powerProduction = 2;
             size = 4;
+            hasItems = true;
 
             consumeItems(with(DawneItems.sevas, 4));
         }};
@@ -163,6 +172,7 @@ public class DawneBlocks {
                 requirements(Category.turret, with(DawneItems.erum, 70, DawneItems.caris, 15));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
                 health = 20;
+                hasLiquids = true;
                 recoil = 3f;
                 reload = 40f;
                 range = 120;
