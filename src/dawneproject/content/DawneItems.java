@@ -9,11 +9,11 @@ public class DawneItems {
 
     //raw - Dawne
 
-    erum, verent, vasil, sevas,
+    erum, verent, vasil, sevas, talcPowder,
 
     //manufactured - Dawne
 
-    caris, actium, placeholderName;
+    caris, kasev, actium, aspec, tavor;
 
     public static Seq<Item> DawneItems = new Seq<>();
     public static Seq<Item> DawneOnlyItems = new Seq<>();
@@ -35,8 +35,7 @@ public class DawneItems {
             radioactivity = 0f;
         }};
 
-        //TODO vasil color
-        vasil = new Item("vasil", Color.valueOf("111111")){{
+        vasil = new Item("vasil", Color.valueOf("b7c9e2")){{
             flammability = 0.4f;
             cost = 1.2f;
             hardness = 3;
@@ -44,13 +43,21 @@ public class DawneItems {
             radioactivity = 1.3f;
         }};
 
-        //TODO name change + color (change history: "kastov" to "sevas"
-        sevas = new Item("sevas", Color.valueOf("222222")){{
+        //TODO name change?
+        sevas = new Item("sevas", Color.valueOf("192841")){{
             flammability = 0.54f;
             cost = 1.3f;
             hardness = 3;
             explosiveness = 0.12f;
             radioactivity = 2.8f;
+        }};
+
+        talcPowder = new Item("talc-powder", Color.valueOf("c0ad79")){{
+            flammability = 0.4f;
+            cost = 1f;
+            hardness = 1;
+            explosiveness = 0.1f;
+            radioactivity = 0.08f;
         }};
 
         caris = new Item("caris", Color.valueOf("7973d3")){{
@@ -61,8 +68,7 @@ public class DawneItems {
             radioactivity = 0f;
         }};
 
-        //TODO actium color
-        actium = new Item("actium", Color.valueOf("555555")){{
+        actium = new Item("actium", Color.valueOf("9abdcc")){{
             flammability = 0f;
             cost = 1.3f;
             hardness = 1;
@@ -70,8 +76,16 @@ public class DawneItems {
             radioactivity = 0.8f;
         }};
 
-        //TODO change name obviously, phase-like material
-        placeholderName = new Item("placeholder-name", Color.valueOf("333333")){{
+        kasev = new Item("kasev", Color.valueOf("c0afe2")){{
+            flammability = 0.05f;
+            cost = 1.0f;
+            hardness = 3;
+            explosiveness = 0f;
+            radioactivity = 0.02f;
+        }};
+
+        //TODO change name?
+        aspec = new Item("placeholder-name", Color.valueOf("e5f3fd")){{
             flammability = 0f;
             cost = 1.4f;
             hardness = 1;
@@ -79,7 +93,17 @@ public class DawneItems {
             radioactivity = 1.2f;
         }};
 
-        DawneItems.addAll(erum,verent, vasil, sevas, caris, actium);
-        DawneOnlyItems.addAll(erum, verent, vasil, sevas, caris, actium);
+        tavor = new Item("tavor", Color.valueOf("014421")){{
+            flammability = 0.25f;
+            cost = 1.4f;
+            hardness = 1;
+            explosiveness = 0.6f;
+            radioactivity = 0.8f;
+        }};
+
+        //side note these names are SO bad LMAO
+
+        DawneItems.addAll(erum,verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
+        DawneOnlyItems.addAll(erum, verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
     }
 }

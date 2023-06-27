@@ -11,6 +11,7 @@ import mindustry.content.Fx;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.blocks.power.NuclearReactor;
 import mindustry.world.blocks.power.ThermalGenerator;
 import mindustry.world.blocks.production.Fracker;
 import mindustry.world.blocks.production.GenericCrafter;
@@ -25,11 +26,11 @@ public class DawneBlocks {
     //distribution - Dawne
 
     erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
-    placeHolderNameForAPhaseBridge,
+    aspecTransporter,
 
     //production - Dawne
 
-    carisPress, actiumSmelter,
+    carisPress, actiumSmelter, kasevForge,
 
     //power gen - Dawne
 
@@ -65,7 +66,7 @@ public class DawneBlocks {
         erumBridge = new BufferedItemBridge("erum-bridge") {{
             requirements(Category.distribution, with(DawneItems.erum, 4, DawneItems.caris, 2));
             health = 5;
-            range = 3;
+            range = 4;
             arrowSpacing = 5f;
             speed = 12f;
             bufferCapacity = 3;
@@ -103,10 +104,10 @@ public class DawneBlocks {
             invert = true;
         }};
 
-        placeHolderNameForAPhaseBridge = new ItemBridge("placeholder-name-for-a-phase-bridge"){{
-            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.placeholderName, 3));
+        aspecTransporter = new ItemBridge("aspec-transporter"){{
+            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.aspec, 3));
             health = 5;
-            range = 8;
+            range = 3;
             buildCostMultiplier = 1f;
             conductivePower = true;
             hasPower = true;
@@ -127,6 +128,23 @@ public class DawneBlocks {
             hasItems = true;
 
             consumeItems(with(DawneItems.verent, 2));
+        }};
+
+        kasevForge = new GenericCrafter("kasev-forge"){{
+            requirements(Category.crafting, with(DawneItems.erum, 35, DawneItems.caris, 60, DawneItems.vasil, 40));
+            craftEffect = Fx.smeltsmoke;
+            outputItem = new ItemStack(DawneItems.kasev, 4);
+            craftTime = 80f;
+            size = 3;
+            health = 20;
+            hasPower = true;
+            hasLiquids = false;
+            itemCapacity = 30;
+            ambientSound = Sounds.smelter;
+            ambientSoundVolume = 0.07f;
+
+            consumeItems(with(DawneItems.erum, 2, DawneItems.talcPowder, 3));
+            consumePower(0.25f);
         }};
 
         actiumSmelter = new GenericCrafter("actium-smelter"){{
@@ -155,24 +173,26 @@ public class DawneBlocks {
             size = 2;
         }};
 
-        //TODO if this doesn't work create a new `thermonuclearReactor` class, or make it a nuclearReactor with only 100% efficiency/placeable on hot/magma tiles (shouldn't be able to be placed on slag!)
-        thermonuclearReactor = new ThermalGenerator("thermonuclear-reactor"){{
+        thermonuclearReactor = new NuclearReactor("thermonuclear-reactor"){{
             requirements(Category.power, with(DawneItems.erum, 85, DawneItems.caris, 25, DawneItems.vasil, 40, DawneItems.actium, 30));
             health = 50;
             ambientSound = Sounds.hum;
             ambientSoundVolume = 0.04f;
-            powerProduction = 2;
+            powerProduction = 2f;
             size = 4;
             hasItems = true;
+            hasLiquids = true;
+            itemDuration = 400f;
+            heating = 0.02f;
 
             consumeItems(with(DawneItems.sevas, 4));
+            consumeLiquid(DawneLiquids.camberCoolant, heating / coolantPower).update(false);
         }};
 
         fracture = new ItemTurret("fracture") {{
                 requirements(Category.turret, with(DawneItems.erum, 70, DawneItems.caris, 15));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
                 health = 20;
-                hasLiquids = true;
                 recoil = 3f;
                 reload = 40f;
                 range = 120;
@@ -190,7 +210,7 @@ public class DawneBlocks {
                 researchCostMultiplier = 0.05f;
                 ammo(
                         DawneItems.verent, new BasicBulletType(8f, 6) {{
-                            lifetime = 2.5f;
+                            lifetime = 17.5f;
                             width = 12f;
                             hitSize = 7f;
                             height = 20f;
@@ -209,7 +229,7 @@ public class DawneBlocks {
                         }},
                         DawneItems.caris, new BasicBulletType(9f, 16) {{
                                 splashDamage = 4;
-                                splashDamageRadius = 12.4f;
+                                splashDamageRadius = 17.5f;
                                 lifetime = 2.5f;
                                 width = 12f;
                                 hitSize = 7f;
