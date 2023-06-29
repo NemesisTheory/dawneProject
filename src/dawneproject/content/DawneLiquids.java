@@ -15,6 +15,7 @@ public class DawneLiquids {
             camberCoolant, hypercoolant;
 
     public static void load() {
+        // cools down: Turrets, buildings, factories, reactors
         camberCoolant = new Liquid("camber-coolant", Color.valueOf("7efbbb3")){{
             viscosity = 0.02f;
             flammability = 0f;
@@ -24,6 +25,7 @@ public class DawneLiquids {
             canStayOn.add(water);
         }};
 
+        // cools down: Reactors (TODO)
         hypercoolant = new Liquid("hypercoolant", Color.valueOf("111111")){{
             viscosity = 0.04f;
             flammability = 0f;

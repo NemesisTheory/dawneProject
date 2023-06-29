@@ -18,7 +18,14 @@ public class DawneItems {
     public static Seq<Item> DawneItems = new Seq<>();
     public static Seq<Item> DawneOnlyItems = new Seq<>();
 
+    public static Seq<Item> VolirItems = new Seq<>();
+    public static Seq<Item> VolirOnlyItems = new Seq<>();
+
+    public static Seq<Item> ConcordItems = new Seq<>();
+    public static Seq<Item> ConcordOnlyItems = new Seq<>();
+
     public static void load() {
+        // copper
         erum = new Item("erum", Color.valueOf("537d90")){{
             flammability = 0f;
             cost = 1.0f;
@@ -35,6 +42,7 @@ public class DawneItems {
             radioactivity = 0f;
         }};
 
+        // titanium
         vasil = new Item("vasil", Color.valueOf("b7c9e2")){{
             flammability = 0.4f;
             cost = 1.2f;
@@ -43,7 +51,7 @@ public class DawneItems {
             radioactivity = 1.3f;
         }};
 
-        //TODO name change?
+        // thorium TODO name change
         sevas = new Item("sevas", Color.valueOf("192841")){{
             flammability = 0.54f;
             cost = 1.3f;
@@ -52,6 +60,7 @@ public class DawneItems {
             radioactivity = 2.8f;
         }};
 
+        // sand
         talcPowder = new Item("talc-powder", Color.valueOf("c0ad79")){{
             flammability = 0.4f;
             cost = 1f;
@@ -60,6 +69,7 @@ public class DawneItems {
             radioactivity = 0.08f;
         }};
 
+        // graphite + metaglass
         caris = new Item("caris", Color.valueOf("7973d3")){{
             flammability = 0f;
             cost = 1.1f;
@@ -68,6 +78,7 @@ public class DawneItems {
             radioactivity = 0f;
         }};
 
+        // plastanium
         actium = new Item("actium", Color.valueOf("9abdcc")){{
             flammability = 0f;
             cost = 1.3f;
@@ -76,6 +87,7 @@ public class DawneItems {
             radioactivity = 0.8f;
         }};
 
+        // silicon
         kasev = new Item("kasev", Color.valueOf("c0afe2")){{
             flammability = 0.05f;
             cost = 1.0f;
@@ -84,6 +96,7 @@ public class DawneItems {
             radioactivity = 0.02f;
         }};
 
+        // phase
         aspec = new Item("aspec", Color.valueOf("e5f3fd")){{
             flammability = 0f;
             cost = 1.4f;
@@ -92,6 +105,7 @@ public class DawneItems {
             radioactivity = 1.2f;
         }};
 
+        // surge
         tavor = new Item("tavor", Color.valueOf("014421")){{
             flammability = 0.25f;
             cost = 1.4f;
@@ -104,5 +118,11 @@ public class DawneItems {
 
         DawneItems.addAll(erum,verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
         DawneOnlyItems.addAll(erum, verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
+
+        VolirItems.addAll(erum,verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
+        VolirOnlyItems.addAll(erum, verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
+
+        ConcordItems.addAll(erum,verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
+        ConcordOnlyItems.addAll(erum, verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
     }
 }

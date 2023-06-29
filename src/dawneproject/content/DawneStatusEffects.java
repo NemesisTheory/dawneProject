@@ -8,15 +8,15 @@ public class DawneStatusEffects {
 
     // damaging
 
-    meltdown,
+    meltdown, instantDestroy,
 
     // healing
 
-    regenerating,
+    regenerating, instantRepair,
 
     // disrupting
 
-    destabilized, shutdown;
+    destabilized, shutdown, invincibleDisarmedUnmoving;
 
     public static void load() {
         meltdown = new StatusEffect("meltdown-status"){{
@@ -27,10 +27,20 @@ public class DawneStatusEffects {
             damage = 8;
         }};
 
+        instantDestroy = new StatusEffect("instant-destroy"){{
+            damage = 16666666f;
+            show = false;
+        }};
+
         regenerating = new StatusEffect("regenerating"){{
             speedMultiplier = 0.85f;
             reloadMultiplier = 0.79f;
             damage = -5.6f;
+        }};
+
+        instantRepair = new StatusEffect("instant-repair"){{
+            damage = -16666666f;
+            show = false;
         }};
 
         destabilized = new StatusEffect("destabilized"){{
@@ -44,6 +54,14 @@ public class DawneStatusEffects {
             speedMultiplier = 0f;
             buildSpeedMultiplier = 0f;
             dragMultiplier = 0f;
+            disarm = true;
+        }};
+
+        invincibleDisarmedUnmoving = new StatusEffect("invincible-disarmed-unmoving"){{
+            speedMultiplier = 0f;
+            buildSpeedMultiplier = 0f;
+            dragMultiplier = 0f;
+            healthMultiplier = 16666666f;
             disarm = true;
         }};
     }
