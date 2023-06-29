@@ -10,7 +10,8 @@ public class DawneProject extends Mod{
     public void loadContent(){
         DawneItems.load();
         DawneLiquids.load();
-        DawneBlocks.load();    
+        DawneBlocks.load();
+        DawneUnitTypes.load();
         DawnePlanets.load();
     }
 }
