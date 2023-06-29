@@ -12,6 +12,7 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.power.NuclearReactor;
+import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.power.SolarGenerator;
 import mindustry.world.blocks.power.ThermalGenerator;
 import mindustry.world.blocks.production.GenericCrafter;
@@ -20,32 +21,45 @@ import mindustry.gen.Sounds;
 import mindustry.content.Liquids;
 import mindustry.world.consumers.ConsumeLiquid;
 import mindustry.entities.pattern.ShootAlternate;
+import mindustry.world.blocks.power.Battery;
 
 import static mindustry.type.ItemStack.with;
 
 public class DawneBlocks {
     public static Block
 
-    //distribution - Dawne
+    // distribution - Dawne
 
     erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
     aspecTransporter,
 
-    //production - Dawne
+    // production - Dawne
 
     carisPress, kasevForge, actiumSmelter,
 
-    //power gen - Dawne
+    // power - Dawne
 
-    thermalCondenser, solarArray, thermonuclearReactor,
+    dawnePowernode, dawneLargePowerNode, dawneBattery, dawneLargeBattery, thermalCondenser, solarArray, thermonuclearReactor,
 
-    //pewpews - Dawne
+    // pewpews - Dawne
 
     fracture, rupture, broadside,
 
-    //wall - Dawne
+    // wall - Dawne
 
-    erumWall, largeErumWall, vasilWall, largeVasilWall, sevasWall, largeSevasWall, tavorWall, largeTavorWall;
+    erumWall, largeErumWall, vasilWall, largeVasilWall, sevasWall, largeSevasWall, tavorWall, largeTavorWall,
+
+    // core
+
+    coreLegion,
+
+    // special
+
+    airspaceControl,
+
+    // effect
+
+    accelerator, massAccelerator;
 
     public static void load() {
         erumConveyor = new Conveyor("erum-conveyor") {{
@@ -164,6 +178,37 @@ public class DawneBlocks {
             consumePower(0.75f);
         }};
 
+        dawnePowernode = new PowerNode("dawne-power-node"){{
+            requirements(Category.power, with(DawneItems.erum, 1, DawneItems.caris, 2));
+            health = 5;
+            maxNodes = 8;
+            laserRange = 8;
+        }};
+
+        dawneLargePowerNode = new PowerNode("dawne-large-power-node"){{
+            requirements(Category.power, with(DawneItems.caris, 10, DawneItems.vasil, 5, DawneItems.kasev, 2));
+            health = 5;
+            size = 3;
+            maxNodes = 15;
+            laserRange = 12;
+        }};
+
+        dawneBattery = new Battery("dawne-battery"){{
+            requirements(Category.power, with(DawneItems.erum, 5, DawneItems.caris, 10));
+            size = 2;
+            health = 5;
+            consumePowerBuffered(800f);
+            baseExplosiveness = 2f;
+        }};
+
+        dawneLargeBattery = new Battery("dawne-large-battery"){{
+            requirements(Category.power, with(DawneItems.caris, 20, DawneItems.vasil, 50, DawneItems.kasev, 25));
+            size = 3;
+            health = 8;
+            consumePowerBuffered(10000f);
+            baseExplosiveness = 5f;
+        }};
+
         //TODO improve power gen blocks
         thermalCondenser = new ThermalGenerator("thermal-condenser") {{
             requirements(Category.power, with(DawneItems.erum, 50, DawneItems.caris, 15));
@@ -179,7 +224,7 @@ public class DawneBlocks {
         solarArray = new SolarGenerator("solar-array"){{
             requirements(Category.power, with(DawneItems.erum, 150, DawneItems.caris, 70, DawneItems.vasil, 120, DawneItems.kasev, 200, DawneItems.aspec, 50));
             size = 3;
-            health = 30;
+            health = 20;
             powerProduction = 0.2f;
         }};
 
@@ -187,20 +232,20 @@ public class DawneBlocks {
             requirements(Category.power, with(DawneItems.erum, 850, DawneItems.caris, 250, DawneItems.vasil, 400, DawneItems.kasev, 600, DawneItems.actium, 300));
             health = 50;
             ambientSound = Sounds.hum;
-            ambientSoundVolume = 0.04f;
-            powerProduction = 2f;
+            ambientSoundVolume = 0.24f;
             size = 4;
-            itemDuration = 400f;
+            itemDuration = 2f;
+            powerProduction = 15f;
             heating = 0.02f;
 
-            consumeItems(with(DawneItems.sevas, 4));
+            consumeItem(Items.thorium);
             consumeLiquid(DawneLiquids.camberCoolant, heating / coolantPower).update(false);
         }};
 
         fracture = new ItemTurret("fracture") {{
                 requirements(Category.turret, with(DawneItems.erum, 75, DawneItems.caris, 30));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
-                health = 20;
+                health = 30;
                 recoil = 3f;
                 reload = 40f;
                 range = 120;
@@ -266,12 +311,13 @@ public class DawneBlocks {
         rupture = new ItemTurret("rupture") {{
                 requirements(Category.turret, with(DawneItems.erum, 80, DawneItems.caris, 30));
                 health = 35;
+                range = 240;
                 recoil = 2f;
                 reload = 10f;
                 shootCone = 9f;
                 inaccuracy = 5.5f;
                 shoot = new ShootAlternate(){{
-                        spread = 3.7f;
+                        spread = 6f;
                         shots = 3;
                         barrels = 3;
                     }};

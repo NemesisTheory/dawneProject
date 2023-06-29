@@ -12,9 +12,21 @@ public class DawneUnitTypes {
 
     public static UnitType
 
-            // assault aerial
+    // specialist ground
 
-            portent;
+    hymn, anthem, serenade, symphony, euphony,
+
+    // assault ground
+
+    misanthrope, naysayer, despondent, nihilist, fatalist,
+
+    // assault aerial
+
+    portent, premonition, doomsday, hereafter, damnation,
+
+    // core
+
+    contingent;
 
     public static void load() {
         portent = new UnitType("portent") {{
