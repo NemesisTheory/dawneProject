@@ -12,6 +12,8 @@ public class DawneUnitTypes {
 
     public static UnitType
 
+            //yes most of these names are from Architects songs ([A Wasted] Hymn, Naysayer, Nihilist, Doomsday, Hereafer, Damnation, Deathwish, Gravedigger, Downfall)
+
     // specialist ground
 
     hymn, anthem, serenade, symphony, euphony,
@@ -24,12 +26,16 @@ public class DawneUnitTypes {
 
     portent, premonition, doomsday, hereafter, damnation,
 
+    // special
+
+    deathwish, gravedigger, downfall, icarus, solstice, everglow,
+
     // core
 
     contingent;
 
     public static void load() {
-        portent = new UnitType("portent") {{
+        /* portent = new UnitType("portent") {{
             health = 60;
             speed = 2.85f;
             accel = 0.09f;
@@ -67,6 +73,6 @@ public class DawneUnitTypes {
                     statusDuration = 30f;
                 }};
             }});
-        }};
+        }};*/
     }
 }

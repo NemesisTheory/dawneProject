@@ -19,9 +19,11 @@ import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.defense.*;
 import mindustry.gen.Sounds;
 import mindustry.content.Liquids;
+import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.consumers.ConsumeLiquid;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.world.blocks.power.Battery;
+import mindustry.content.UnitTypes;
 
 import static mindustry.type.ItemStack.with;
 
@@ -440,6 +442,47 @@ public class DawneBlocks {
                     lightningLength = 125;
                     lightningColor = Color.valueOf("02de6b");
                     chanceDeflect = 0.6f;
+                }};
+
+
+                //TODO create contingent unit for legion core or something else idk
+                coreLegion = new CoreBlock("core-legion"){{
+                    requirements(Category.effect, with(DawneItems.erum, 4500, DawneItems.caris, 3500, DawneItems.vasil, 2500, DawneItems.kasev, 5000, DawneItems.sevas, 3000));
+                    health = 2200;
+                    size = 5;
+                    armor = 2;
+                    itemCapacity = 8000;
+                    unitCapModifier = 28;
+                    unitType = UnitTypes.gamma;
+                    researchCostMultiplier = 0.12f;
+                }};
+
+                accelerator = new OverdriveProjector("accelerator"){{
+                    requirements(Category.effect, with(DawneItems.caris, 80, DawneItems.vasil, 40, DawneItems.kasev, 50, DawneItems.aspec, 20));
+                    size = 2;
+                    health = 20;
+                    hasPower = true;
+                    reload = 180;
+                    range = 160;
+                    speedBoost = 1.5f;
+                    consumePower(0.15f);
+                    hasBoost = false;
+                }};
+
+                massAccelerator = new OverdriveProjector("mass-accelerator"){{
+                    requirements(Category.effect, with(DawneItems.caris, 350, DawneItems.vasil, 500, DawneItems.kasev, 250, DawneItems.sevas, 400, DawneItems.aspec, 85));
+                    size = 4;
+                    health = 25;
+                    hasPower = true;
+                    reload = 180;
+                    range = 400;
+                    speedBoost = 2.8f;
+                    useTime = 360;
+                    itemCapacity = 15;
+                    consumePower(0.5f);
+                    hasBoost = false;
+
+                    consumeItems(with(DawneItems.kasev, 2, DawneItems.aspec, 3));
                 }};
             }
         };
