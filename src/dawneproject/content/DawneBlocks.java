@@ -12,10 +12,14 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.power.NuclearReactor;
+import mindustry.world.blocks.power.SolarGenerator;
 import mindustry.world.blocks.power.ThermalGenerator;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.defense.*;
 import mindustry.gen.Sounds;
+import mindustry.content.Liquids;
+import mindustry.world.consumers.ConsumeLiquid;
+import mindustry.entities.pattern.ShootAlternate;
 
 import static mindustry.type.ItemStack.with;
 
@@ -29,11 +33,11 @@ public class DawneBlocks {
 
     //production - Dawne
 
-    carisPress, actiumSmelter, kasevForge,
+    carisPress, kasevForge, actiumSmelter,
 
     //power gen - Dawne
 
-    thermalCondenser, thermonuclearReactor,
+    thermalCondenser, solarArray, thermonuclearReactor,
 
     //pewpews - Dawne
 
@@ -41,7 +45,7 @@ public class DawneBlocks {
 
     //wall - Dawne
 
-    erumWall, largeErumWall, vasilWall, largeVasilWall, tavorWall, largeTavorWall;
+    erumWall, largeErumWall, vasilWall, largeVasilWall, sevasWall, largeSevasWall, tavorWall, largeTavorWall;
 
     public static void load() {
         erumConveyor = new Conveyor("erum-conveyor") {{
@@ -162,7 +166,7 @@ public class DawneBlocks {
 
         //TODO improve power gen blocks
         thermalCondenser = new ThermalGenerator("thermal-condenser") {{
-            requirements(Category.power, with(DawneItems.erum, 30, DawneItems.caris, 5));
+            requirements(Category.power, with(DawneItems.erum, 50, DawneItems.caris, 15));
             health = 35;
             generateEffect = Fx.redgeneratespark;
             floating = true;
@@ -172,15 +176,20 @@ public class DawneBlocks {
             size = 2;
         }};
 
+        solarArray = new SolarGenerator("solar-array"){{
+            requirements(Category.power, with(DawneItems.erum, 150, DawneItems.caris, 70, DawneItems.vasil, 120, DawneItems.kasev, 200, DawneItems.aspec, 50));
+            size = 3;
+            health = 30;
+            powerProduction = 0.2f;
+        }};
+
         thermonuclearReactor = new NuclearReactor("thermonuclear-reactor") {{
-            requirements(Category.power, with(DawneItems.erum, 85, DawneItems.caris, 25, DawneItems.vasil, 40, DawneItems.actium, 30));
+            requirements(Category.power, with(DawneItems.erum, 850, DawneItems.caris, 250, DawneItems.vasil, 400, DawneItems.kasev, 600, DawneItems.actium, 300));
             health = 50;
             ambientSound = Sounds.hum;
             ambientSoundVolume = 0.04f;
             powerProduction = 2f;
             size = 4;
-            hasItems = true;
-            hasLiquids = true;
             itemDuration = 400f;
             heating = 0.02f;
 
@@ -189,7 +198,7 @@ public class DawneBlocks {
         }};
 
         fracture = new ItemTurret("fracture") {{
-                requirements(Category.turret, with(DawneItems.erum, 70, DawneItems.caris, 15));
+                requirements(Category.turret, with(DawneItems.erum, 75, DawneItems.caris, 30));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
                 health = 20;
                 recoil = 3f;
@@ -199,7 +208,8 @@ public class DawneBlocks {
                 inaccuracy = 0.5f;
                 targetAir = false;
                 targetGround = true;
-                coolantMultiplier = 3f;
+                coolantMultiplier = 0.75f;
+                coolant = consumeCoolant(1f);
                 hasLiquids = true;
                 shake = 2f;
                 ammoPerShot = 2;
@@ -258,11 +268,17 @@ public class DawneBlocks {
                 health = 35;
                 recoil = 2f;
                 reload = 10f;
-                shootCone = 8f;
-                inaccuracy = 2.5f;
+                shootCone = 9f;
+                inaccuracy = 5.5f;
+                shoot = new ShootAlternate(){{
+                        spread = 3.7f;
+                        shots = 3;
+                        barrels = 3;
+                    }};
                 targetAir = true;
                 targetGround = false;
-                coolantMultiplier = 1f;
+                coolantMultiplier = 0.6f;
+                coolant = consumeCoolant(1f);
                 hasLiquids = true;
                 shake = 1f;
                 size = 4;
@@ -325,7 +341,7 @@ public class DawneBlocks {
                 largeErumWall = new Wall("large-erum-wall") {{
                     requirements(Category.defense, with(DawneItems.erum, 32));
                     size = 2;
-                    health = 160;
+                    health = 180;
                     researchCostMultiplier = 0.1f;
                 }};
 
@@ -339,8 +355,45 @@ public class DawneBlocks {
                 largeVasilWall = new Wall("large-vasil-wall") {{
                     requirements(Category.defense, with(DawneItems.caris, 16, DawneItems.vasil, 32));
                     size = 2;
-                    health = 350;
+                    health = 400;
                     researchCostMultiplier = 0.2f;
+                }};
+
+                sevasWall = new Wall("sevas-wall"){{
+                    requirements(Category.defense, with(DawneItems.caris, 5, DawneItems.vasil, 6, DawneItems.sevas, 8));
+                    size = 1;
+                    health = 200;
+                    researchCostMultiplier = 0.2f;
+                }};
+
+                largeSevasWall = new Wall("large-sevas-wall"){{
+                    requirements(Category.defense, with(DawneItems.caris, 20, DawneItems.vasil, 24, DawneItems.sevas, 32));
+                    health = 1000;
+                    researchCostMultiplier = 0.3f;
+                }};
+
+                tavorWall = new Wall("tavor-wall"){{
+                    requirements(Category.defense, with(DawneItems.caris, 8, DawneItems.vasil, 6, DawneItems.sevas, 10, DawneItems.tavor, 6));
+                    size = 1;
+                    health = 150;
+                    researchCostMultiplier = 0.3f;
+                    lightningChance = 0.2f;
+                    lightningDamage = 6;
+                    lightningLength = 120;
+                    lightningColor = Color.valueOf("02de6b");
+                    chanceDeflect = 0.5f;
+                }};
+
+                largeTavorWall = new Wall("large-tavor-wall"){{
+                    requirements(Category.defense, with(DawneItems.caris, 32, DawneItems.vasil, 24, DawneItems.sevas, 40, DawneItems.tavor, 24));
+                    size = 2;
+                    health = 800;
+                    researchCostMultiplier = 0.5f;
+                    lightningChance = 0.4f;
+                    lightningDamage = 8;
+                    lightningLength = 125;
+                    lightningColor = Color.valueOf("02de6b");
+                    chanceDeflect = 0.6f;
                 }};
             }
         };

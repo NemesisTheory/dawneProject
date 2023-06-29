@@ -14,9 +14,6 @@ public class DawneLiquids {
 
             camberCoolant, hypercoolant;
 
-    public static Seq<Liquid> DawneLiquids = new Seq<>();
-    public static Seq<Liquid> DawneOnlyLiquids = new Seq<>();
-
     public static void load() {
         camberCoolant = new Liquid("camber-coolant", Color.valueOf("7efbbb3")){{
             viscosity = 0.02f;
@@ -34,8 +31,5 @@ public class DawneLiquids {
             heatCapacity = 0.6f;
             boilPoint = 90f;
         }};
-
-        DawneLiquids.addAll(water, slag, oil, camberCoolant, hypercoolant);
-        DawneOnlyLiquids.addAll(water, slag, oil, camberCoolant, hypercoolant);
     }
 }
