@@ -41,7 +41,7 @@ public class DawneBlocks {
 
     //wall - Dawne
 
-    erumWall, largeErumWall, vasilWall, largeVasilWall;
+    erumWall, largeErumWall, vasilWall, largeVasilWall, tavorWall, largeTavorWall;
 
     public static void load() {
         erumConveyor = new Conveyor("erum-conveyor") {{
@@ -188,8 +188,7 @@ public class DawneBlocks {
             consumeLiquid(DawneLiquids.camberCoolant, heating / coolantPower).update(false);
         }};
 
-        fracture = new ItemTurret("fracture") {
-            {
+        fracture = new ItemTurret("fracture") {{
                 requirements(Category.turret, with(DawneItems.erum, 70, DawneItems.caris, 15));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
                 health = 20;
@@ -258,9 +257,9 @@ public class DawneBlocks {
                 requirements(Category.turret, with(DawneItems.erum, 80, DawneItems.caris, 30));
                 health = 35;
                 recoil = 2f;
-                reload = 12f;
+                reload = 10f;
                 shootCone = 8f;
-                inaccuracy = 2f;
+                inaccuracy = 2.5f;
                 targetAir = true;
                 targetGround = false;
                 coolantMultiplier = 1f;
@@ -271,7 +270,7 @@ public class DawneBlocks {
                 researchCostMultiplier = 0.06f;
                 ammo(
                         DawneItems.verent, new BasicBulletType() {{
-                                damage = 5;
+                                damage = 12;
                                 pierce = true;
                                 pierceCap = 3;
                                 speed = 4.25f;
@@ -294,7 +293,7 @@ public class DawneBlocks {
                                 hitEffect = despawnEffect = Fx.hitBulletColor;
                             }},
                         DawneItems.vasil, new BasicBulletType(){{
-                            damage = 12;
+                            damage = 20;
                             speed = 4.25f;
                             width = height = 16;
                             shrinkY = 0.3f;

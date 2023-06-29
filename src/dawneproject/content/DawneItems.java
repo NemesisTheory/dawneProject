@@ -84,8 +84,7 @@ public class DawneItems {
             radioactivity = 0.02f;
         }};
 
-        //TODO change name?
-        aspec = new Item("placeholder-name", Color.valueOf("e5f3fd")){{
+        aspec = new Item("aspec", Color.valueOf("e5f3fd")){{
             flammability = 0f;
             cost = 1.4f;
             hardness = 1;
@@ -101,7 +100,7 @@ public class DawneItems {
             radioactivity = 0.8f;
         }};
 
-        //side note these names are SO bad LMAO
+        //side note these names are so bad
 
         DawneItems.addAll(erum,verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);
         DawneOnlyItems.addAll(erum, verent, vasil, sevas, talcPowder, caris, kasev, actium, aspec, tavor);

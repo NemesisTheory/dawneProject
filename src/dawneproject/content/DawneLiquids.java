@@ -12,7 +12,7 @@ public class DawneLiquids {
 
             //coolants - Dawne
 
-            camberCoolant;
+            camberCoolant, hypercoolant;
 
     public static Seq<Liquid> DawneLiquids = new Seq<>();
     public static Seq<Liquid> DawneOnlyLiquids = new Seq<>();
@@ -26,7 +26,16 @@ public class DawneLiquids {
             boilPoint = 40f;
             canStayOn.add(water);
         }};
-        DawneLiquids.addAll(camberCoolant);
-        DawneOnlyLiquids.addAll(camberCoolant);
+
+        hypercoolant = new Liquid("hypercoolant", Color.valueOf("111111")){{
+            viscosity = 0.04f;
+            flammability = 0f;
+            explosiveness = 0f;
+            heatCapacity = 0.6f;
+            boilPoint = 90f;
+        }};
+
+        DawneLiquids.addAll(water, slag, oil, camberCoolant, hypercoolant);
+        DawneOnlyLiquids.addAll(water, slag, oil, camberCoolant, hypercoolant);
     }
 }

@@ -12,6 +12,7 @@ import mindustry.world.meta.Env;
 import mindustry.game.Team;
 
 import static dawneproject.content.DawneItems.*;
+import static dawneproject.content.DawneLiquids.*;
 
 public class DawnePlanets {
     public static Planet
@@ -22,7 +23,7 @@ public class DawnePlanets {
 
     // planet
 
-    dawne, concord;
+    volir, dawne, concord;
 
     public static void load() {
         kaeva = new Planet("kaeva", Planets.sun, 8){{
@@ -36,7 +37,7 @@ public class DawnePlanets {
             unlocked = true;
         }};
 
-        dawne = new Planet("thrygatis", dawne, 2, 2){{
+        dawne = new Planet("dawne", dawne, 2, 2){{
             generator = new SerpuloPlanetGenerator();
             meshLoader = () -> new HexMesh(dawne, 2);
             cloudMeshLoader = () -> new MultiMesh(
