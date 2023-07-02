@@ -23,7 +23,6 @@ public class DawnePlanets {
 
     // planet
 
-    //volir = hot (close to sun, real), dawne = (also kinda hot but also not), concord = blue, like tantros (ok now that I look at it the system now just looks like a rip-off of mindustry original solar system
     volir, dawne, concord;
 
     // asteroids

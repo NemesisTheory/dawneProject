@@ -70,7 +70,7 @@ public class DawneStatusEffects {
         }};
 
         accelerate = new StatusEffect("accelerate"){{
-            speedMultiplier = 5;
+            speedMultiplier = 5.5f;
             dragMultiplier = 0f;
         }};
     }

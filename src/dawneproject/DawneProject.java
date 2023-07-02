@@ -1,6 +1,6 @@
 package dawneproject;
 
-import arc.graphics.*;
+import arc.struct.*;
 import mindustry.mod.*;
 import dawneproject.content.*;
 public class DawneProject extends Mod{

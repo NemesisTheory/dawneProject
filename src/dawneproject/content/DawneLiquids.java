@@ -30,8 +30,8 @@ public class DawneLiquids {
             viscosity = 0.04f;
             flammability = 0f;
             explosiveness = 0f;
-            heatCapacity = 0.6f;
-            boilPoint = 90f;
+            heatCapacity = 0.8f;
+            boilPoint = 80f;
         }};
     }
 }

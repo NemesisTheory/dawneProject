@@ -12,7 +12,7 @@ public class DawneUnitTypes {
 
     public static UnitType
 
-            //yes most of these names are from Architects songs ([A Wasted] Hymn, Naysayer, Nihilist, Doomsday, Hereafer, Damnation, Deathwish, Gravedigger, Downfall)
+            //yes most of these names are from Architects songs
 
     // specialist ground
 

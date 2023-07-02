@@ -25,7 +25,7 @@ public class DawneItems {
     public static Seq<Item> ConcordOnlyItems = new Seq<>();
 
     public static void load() {
-        // copper
+        // copper.
         erum = new Item("erum", Color.valueOf("537d90")){{
             flammability = 0f;
             cost = 1.0f;
@@ -34,6 +34,7 @@ public class DawneItems {
             radioactivity = 0f;
         }};
 
+        // coal.
         verent = new Item("verent", Color.valueOf("a3837e")){{
             flammability = 0.15f;
             cost = 1.0f;
