@@ -16,7 +16,11 @@ public class DawneStatusEffects {
 
     // disrupting
 
-    destabilized, shutdown, invincibleDisarmedUnmoving;
+    destabilized, shutdown, invincibleDisarmedUnmoving,
+
+    // supporting
+
+    accelerate;
 
     public static void load() {
         meltdown = new StatusEffect("meltdown-status"){{
@@ -63,6 +67,11 @@ public class DawneStatusEffects {
             dragMultiplier = 0f;
             healthMultiplier = 16666666f;
             disarm = true;
+        }};
+
+        accelerate = new StatusEffect("accelerate"){{
+            speedMultiplier = 5;
+            dragMultiplier = 0f;
         }};
     }
 }
