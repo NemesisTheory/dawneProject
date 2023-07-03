@@ -55,7 +55,8 @@ public class DawnePlanets {
             allowLaunchSchematics = false;
             launchCapacityMultiplier = 0.75f;
             clearSectorOnLose = true;
-            solarSystem = kaeva;
+            // for testing TODO change back
+            solarSystem = Planets.sun;
             atmosphereRadIn = 0;
             atmosphereRadOut = 0.5f;
             camRadius = 0.5f;

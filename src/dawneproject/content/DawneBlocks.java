@@ -37,7 +37,7 @@ public class DawneBlocks {
     erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
     aspecTransporter, massTransporter,
 
-    // liquid distribution TODO something....
+    // liquid distribution TODO something
 
 
 
@@ -80,7 +80,7 @@ public class DawneBlocks {
 
     // effect TODO reinforcer increases block health multip.
 
-    regenerator, massRegenerator, energyProjector, massEnergyProjector, aegisFate, accelerator, massAccelerator, reinforcer;
+    regenerator, massRegenerator, energyProjector, massEnergyProjector, aegisFate, accelerator, primeAccelerator, massAccelerator, reinforcer;
 
     public static void load() {
         erumConveyor = new Conveyor("erum-conveyor") {{
@@ -757,7 +757,7 @@ public class DawneBlocks {
                     hasBoost = false;
                 }};
 
-                massAccelerator = new OverdriveProjector("mass-accelerator"){{
+                primeAccelerator = new OverdriveProjector("prime-accelerator"){{
                     requirements(Category.effect, with(DawneItems.caris, 350, DawneItems.vasil, 500, DawneItems.kasev, 250, DawneItems.sevas, 400, DawneItems.aspec, 85));
                     size = 4;
                     health = 25;
@@ -771,6 +771,22 @@ public class DawneBlocks {
                     hasBoost = false;
 
                     consumeItems(with(DawneItems.kasev, 2, DawneItems.aspec, 3));
+                }};
+
+                massAccelerator = new OverdriveProjector("mass-accelerator"){{
+                    requirements(Category.effect, with(DawneItems.caris, 800, DawneItems.vasil, 400, DawneItems.kasev, 500, DawneItems.sevas, 450, DawneItems.aspec, 200, DawneItems.tavor, 100));
+                    size = 5;
+                    health = 30;
+                    hasPower = true;
+                    reload = 200;
+                    range = 960;
+                    speedBoost = 1.8f;
+                    useTime = 250;
+                    itemCapacity = 10;
+                    consumePower(2f);
+                    hasBoost = false;
+
+                    consumeItems(with(DawneItems.kasev, 5, DawneItems.aspec, 6, DawneItems.tavor, 2));
                 }};
             }
         };
