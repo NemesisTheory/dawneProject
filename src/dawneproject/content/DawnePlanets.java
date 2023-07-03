@@ -55,14 +55,13 @@ public class DawnePlanets {
             allowLaunchSchematics = false;
             launchCapacityMultiplier = 0.75f;
             clearSectorOnLose = true;
-            // for testing TODO change back
+            // for testing TODO change back to Kaeva + this fails to function - Dawne is INSIDE the sun
             solarSystem = Planets.sun;
             atmosphereRadIn = 0;
             atmosphereRadOut = 0.5f;
-            camRadius = 0.5f;
             visible = true;
             startSector = 16;
-            orbitRadius = 30f;
+            sectorSeed = 3;
             rotateTime = 7 * 60;
             defaultCore = Blocks.coreNucleus;
             iconColor = Color.valueOf("f2f78a");
