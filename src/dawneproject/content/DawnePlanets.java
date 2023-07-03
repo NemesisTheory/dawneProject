@@ -56,6 +56,9 @@ public class DawnePlanets {
             launchCapacityMultiplier = 0.75f;
             clearSectorOnLose = true;
             // for testing TODO change back to Kaeva + this fails to function - Dawne is INSIDE the sun
+            camRadius = 0.5f;
+            orbitSpacing = 2f;
+            radius = 3f;
             solarSystem = Planets.sun;
             atmosphereRadIn = 0;
             atmosphereRadOut = 0.5f;
