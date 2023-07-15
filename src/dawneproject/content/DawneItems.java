@@ -25,7 +25,7 @@ public class DawneItems {
     public static Seq<Item> ConcordOnlyItems = new Seq<>();
 
     public static void load() {
-        // copper
+        // copper + lead
         erum = new Item("erum", Color.valueOf("537d90")){{
             flammability = 0f;
             cost = 1.0f;

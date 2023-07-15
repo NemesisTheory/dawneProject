@@ -85,7 +85,7 @@ public class DawneBlocks {
     public static void load() {
         erumConveyor = new Conveyor("erum-conveyor") {{
             requirements(Category.distribution, with(DawneItems.erum, 1));
-            health = 5;
+            health = 50;
             speed = 0.03f;
             displayedSpeed = 4.2f;
             researchCost = with(Items.scrap, 5);
@@ -95,7 +95,7 @@ public class DawneBlocks {
 
         erumJunction = new Junction("erum-junction") {{
             requirements(Category.distribution, with(DawneItems.erum, 2));
-            health = 5;
+            health = 50;
             speed = 12f;
             capacity = 1;
             buildCostMultiplier = 3f;
@@ -103,7 +103,7 @@ public class DawneBlocks {
 
         erumBridge = new BufferedItemBridge("erum-bridge") {{
             requirements(Category.distribution, with(DawneItems.erum, 4, DawneItems.caris, 2));
-            health = 5;
+            health = 50;
             range = 4;
             arrowSpacing = 5f;
             speed = 12f;
@@ -112,39 +112,39 @@ public class DawneBlocks {
 
         erumRouter = new Router("erum-router") {{
             requirements(Category.distribution, with(DawneItems.erum, 2));
-            health = 5;
+            health = 50;
             buildCostMultiplier = 2f;
         }};
 
         erumOverflow = new OverflowGate("erum-overflow") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 5;
+            health = 50;
             buildCostMultiplier = 1f;
         }};
 
         erumUnderflow = new OverflowGate("erum-underflow") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 5;
+            health = 50;
             buildCostMultiplier = 1f;
             invert = true;
         }};
 
         erumSorter = new Sorter("erum-sorter") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 5;
+            health = 50;
             buildCostMultiplier = 1f;
         }};
 
         erumInvertedSorter = new Sorter("erum-inverted-sorter") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 5;
+            health = 50;
             buildCostMultiplier = 1f;
             invert = true;
         }};
 
         aspecTransporter = new ItemBridge("aspec-transporter") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.aspec, 3));
-            health = 5;
+            health = 50;
             range = 3;
             buildCostMultiplier = 1f;
             conductivePower = true;
@@ -153,24 +153,23 @@ public class DawneBlocks {
             arrowPeriod = 0.9f;
             arrowTimeScl = 2.75f;
 
-            consumePower(0.004f);
+            consumePower(0.1f);
         }};
 
         //TODO imminent for change (big item bridge is fucking stupid)
         massTransporter = new BufferedItemBridge("mass-transporter"){{
-            health = 20;
+            health = 120;
             size = 3;
             range = 25;
             speed = 5f;
             itemCapacity = 250;
             hasPower = true;
 
-            consumePower(1f);
+            consumePower(10f);
         }};
 
         carisPress = new GenericCrafter("caris-press") {{
             requirements(Category.crafting, with(DawneItems.erum, 40));
-            health = 15;
             outputItem = new ItemStack(DawneItems.caris, 2);
             craftEffect = Fx.smeltsmoke;
             craftTime = 138f;
@@ -186,7 +185,6 @@ public class DawneBlocks {
             outputItem = new ItemStack(DawneItems.kasev, 4);
             craftTime = 80f;
             size = 3;
-            health = 20;
             hasPower = true;
             hasLiquids = false;
             itemCapacity = 30;
@@ -194,12 +192,11 @@ public class DawneBlocks {
             ambientSoundVolume = 0.07f;
 
             consumeItems(with(DawneItems.erum, 2, DawneItems.talcPowder, 3));
-            consumePower(0.25f);
+            consumePower(1.5f);
         }};
 
         actiumSmelter = new GenericCrafter("actium-smelter") {{
             requirements(Category.crafting, with(DawneItems.erum, 85, DawneItems.caris, 20, DawneItems.vasil, 45));
-            health = 20;
             hasPower = true;
             outputItem = new ItemStack(DawneItems.actium, 3);
             craftEffect = Fx.smeltsmoke;
@@ -208,19 +205,46 @@ public class DawneBlocks {
             hasItems = true;
 
             consumeItems(with(DawneItems.erum, 1, DawneItems.caris, 2, DawneItems.vasil, 3));
-            consumePower(0.75f);
+            consumePower(3f);
+        }};
+
+        aspecMixer = new GenericCrafter("aspec-mixer"){{
+            requirements(Category.crafting, with(DawneItems.kasev, 100, DawneItems.erum, 140, DawneItems.sevas, 50));
+            craftEffect = Fx.smeltsmoke;
+            outputItem = new ItemStack(DawneItems.aspec, 2);
+            craftTime = 140f;
+            size = 3;
+            hasPower = true;
+            itemCapacity = 10;
+
+            consumeItems(with(DawneItems.talcPowder, 6, DawneItems.sevas, 2));
+            consumePower(2.5f);
+        }};
+
+        tavorSmelter = new GenericCrafter("tavor-smelter"){{
+            requirements(Category.crafting, with(DawneItems.erum, 100, DawneItems.caris, 50, DawneItems.vasil, 60, DawneItems.sevas, 140));
+            hasPower = true;
+            outputItem = new ItemStack(DawneItems.tavor, 2);
+            craftEffect =  Fx.smeltsmoke;
+            craftTime = 200f;
+            size = 5;
+            hasItems = true;
+            itemCapacity = 15;
+
+            consumeItems(with(DawneItems.vasil, 2, DawneItems.sevas, 5, DawneItems.verent, 3, DawneItems.kasev, 2));
+            consumePower(5f);
         }};
 
         dawnePowernode = new PowerNode("dawne-power-node"){{
             requirements(Category.power, with(DawneItems.erum, 1, DawneItems.caris, 2));
-            health = 5;
+            health = 60;
             maxNodes = 8;
             laserRange = 8;
         }};
 
         dawneLargePowerNode = new PowerNode("dawne-large-power-node"){{
             requirements(Category.power, with(DawneItems.caris, 10, DawneItems.vasil, 5, DawneItems.kasev, 2));
-            health = 5;
+            health = 80;
             size = 3;
             maxNodes = 15;
             laserRange = 12;
@@ -229,54 +253,49 @@ public class DawneBlocks {
         dawneBattery = new Battery("dawne-battery"){{
             requirements(Category.power, with(DawneItems.erum, 5, DawneItems.caris, 10));
             size = 2;
-            health = 5;
-            consumePowerBuffered(800f);
+            consumePowerBuffered(4500f);
             baseExplosiveness = 2f;
         }};
 
         dawneLargeBattery = new Battery("dawne-large-battery"){{
             requirements(Category.power, with(DawneItems.caris, 20, DawneItems.vasil, 50, DawneItems.kasev, 25));
-            size = 3;
-            health = 8;
-            consumePowerBuffered(10000f);
+            size = 4;
+            consumePowerBuffered(60000f);
             baseExplosiveness = 5f;
         }};
 
         massCapacitor = new Battery("mass-capacitor"){{
             requirements(Category.power, with(DawneItems.caris, 600, DawneItems.vasil, 450, DawneItems.kasev, 600, DawneItems.aspec, 250));
-            size = 5;
-            health = 20;
-            consumePowerBuffered(80000f);
+            size = 6;
+            consumePowerBuffered(400000f);
             baseExplosiveness = 20f;
         }};
 
         //TODO improve power gen blocks
         thermalCondenser = new ThermalGenerator("thermal-condenser") {{
             requirements(Category.power, with(DawneItems.erum, 50, DawneItems.caris, 15));
-            health = 35;
             generateEffect = Fx.redgeneratespark;
             floating = true;
             ambientSound = Sounds.hum;
             ambientSoundVolume = 0.04f;
-            powerProduction = 0.25f;
+            powerProduction = 2f;
             size = 2;
         }};
 
         solarArray = new SolarGenerator("solar-array"){{
             requirements(Category.power, with(DawneItems.erum, 160, DawneItems.caris, 80, DawneItems.vasil, 120, DawneItems.kasev, 200, DawneItems.aspec, 60));
             size = 4;
-            health = 20;
-            powerProduction = 0.2f;
+            powerProduction = 0.8f;
         }};
 
         thermonuclearReactor = new NuclearReactor("thermonuclear-reactor") {{
             requirements(Category.power, with(DawneItems.erum, 850, DawneItems.caris, 250, DawneItems.vasil, 400, DawneItems.kasev, 600, DawneItems.actium, 300));
-            health = 50;
             ambientSound = Sounds.hum;
             ambientSoundVolume = 0.24f;
-            size = 5;
-            itemDuration = 2f;
-            powerProduction = 3f;
+            size = 4;
+            health = 700;
+            itemDuration = 360f;
+            powerProduction = 15f;
             heating = 0.02f;
 
             consumeItem(DawneItems.sevas);
@@ -288,16 +307,16 @@ public class DawneBlocks {
             requirements(Category.production, with(DawneItems.erum, 40, DawneItems.caris, 10));
             tier = 3;
             size = 3;
-            drillTime = 300;
+            drillTime = 400;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
 
-            consumeLiquid(DawneLiquids.camberCoolant, 0.06f).boost();
+            consumeLiquid(Liquids.water, 0.06f).boost();
         }};
 
         nuclearDrill = new Drill("nuclear-drill"){{
             requirements(Category.production, with(DawneItems.erum, 60, DawneItems.kasev, 80, DawneItems.vasil, 50, DawneItems.sevas, 80));
-            drillTime = 200;
+            drillTime = 240;
             size = 5;
             hasPower = true;
             tier = 4;
@@ -310,14 +329,13 @@ public class DawneBlocks {
 
             liquidBoostIntensity = 1.4f;
 
-            consumePower(0.5f);
+            consumePower(5f);
             consumeLiquid(DawneLiquids.camberCoolant, 0.01f).boost();
         }};
 
         fracture = new ItemTurret("fracture") {{
                 requirements(Category.turret, with(DawneItems.erum, 75, DawneItems.caris, 30));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
-                health = 30;
                 recoil = 3f;
                 reload = 40f;
                 range = 120;
@@ -335,7 +353,7 @@ public class DawneBlocks {
                 rotateSpeed = 1.5f;
                 researchCostMultiplier = 0.05f;
                 ammo(
-                        DawneItems.verent, new BasicBulletType(8f, 6) {{
+                        DawneItems.verent, new BasicBulletType(8f, 25) {{
                             lifetime = 17.5f;
                             width = 12f;
                             hitSize = 7f;
@@ -353,10 +371,7 @@ public class DawneBlocks {
                             hitEffect = despawnEffect = Fx.hitBulletColor;
                             buildingDamageMultiplier = 0.2f;
                         }},
-                        DawneItems.caris, new BasicBulletType(9f, 16) {
-                            {
-                                splashDamage = 4;
-                                splashDamageRadius = 12.5f;
+                        DawneItems.caris, new BasicBulletType(9f, 40) {{
                                 lifetime = 17.5f;
                                 width = 12f;
                                 hitSize = 7f;
@@ -382,12 +397,11 @@ public class DawneBlocks {
 
         rupture = new ItemTurret("rupture") {{
                 requirements(Category.turret, with(DawneItems.erum, 80, DawneItems.caris, 30));
-                health = 35;
                 range = 240;
                 recoil = 2f;
                 reload = 10f;
-                shootCone = 9f;
-                inaccuracy = 5.5f;
+                shootCone = 12f;
+                inaccuracy = 8f;
                 shoot = new ShootAlternate(){{
                         spread = 7f;
                         shots = 3;
@@ -404,7 +418,7 @@ public class DawneBlocks {
                 researchCostMultiplier = 0.06f;
                 ammo(
                         DawneItems.verent, new BasicBulletType() {{
-                                damage = 12;
+                                damage = 35;
                                 pierce = true;
                                 pierceCap = 3;
                                 speed = 4.25f;
@@ -427,7 +441,7 @@ public class DawneBlocks {
                                 hitEffect = despawnEffect = Fx.hitBulletColor;
                             }},
                         DawneItems.vasil, new BasicBulletType(){{
-                            damage = 20;
+                            damage = 60;
                             speed = 4.25f;
                             width = height = 16;
                             shrinkY = 0.3f;
@@ -456,12 +470,11 @@ public class DawneBlocks {
                     Effect amongus = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
 
                     size = 5;
-                    health = 260;
                     range = 320;
                     targetAir = false;
                     targetGround = true;
                     shootSound = Sounds.swish;
-                    reload = 310f;
+                    reload = 450f;
                     recoil = 0f;
                     shootCone = 85;
                     inaccuracy = 25;
@@ -470,14 +483,14 @@ public class DawneBlocks {
                     ammoUseEffect = Fx.casing3;
                     ammoEjectBack = 10;
                     displayAmmoMultiplier = true;
-                    rotateSpeed = 360;
+                    rotateSpeed = 90;
                     hasPower = true;
                     shoot = new ShootSpread(15, 4f);
                     velocityRnd = 0.17f;
-                    hasLiquids = true;
+                    hasLiquids = false;
                     researchCostMultiplier = 0.4f;
 
-                    consumePower(4f);
+                    consumePower(8f);
                     ammo(
                             DawneItems.actium, new BasicBulletType() {{
                                 damage = 0f;
@@ -490,59 +503,61 @@ public class DawneBlocks {
                                 collidesAir = false;
                                 collidesGround = true;
                                 shootEffect = amongus;
-                                knockback = 10.5f;
+                                knockback = 4.5f;
                                 status = DawneStatusEffects.destabilized;
-                                statusDuration = 165;
+                                statusDuration = 140;
                                 hittable = false;
                             }}
                     );
                 }};
 
+                int wallHealthMultiplier = 4;
+
                 erumWall = new Wall("erum-wall") {{
                     requirements(Category.defense, with(DawneItems.erum, 8));
                     size = 1;
-                    health = 35;
+                    health = 100 * wallHealthMultiplier;
                     researchCostMultiplier = 0.1f;
                 }};
 
                 largeErumWall = new Wall("large-erum-wall") {{
                     requirements(Category.defense, with(DawneItems.erum, 32));
                     size = 2;
-                    health = 180;
+                    health = 100 * 4 * wallHealthMultiplier;
                     researchCostMultiplier = 0.1f;
                 }};
 
                 vasilWall = new Wall("vasil-wall") {{
                     requirements(Category.defense, with(DawneItems.caris, 4, DawneItems.vasil, 8));
                     size = 1;
-                    health = 85;
+                    health = 180 * wallHealthMultiplier;
                     researchCostMultiplier = 0.2f;
                 }};
 
                 largeVasilWall = new Wall("large-vasil-wall") {{
                     requirements(Category.defense, with(DawneItems.caris, 16, DawneItems.vasil, 32));
                     size = 2;
-                    health = 400;
+                    health = 180 * 4 * wallHealthMultiplier;
                     researchCostMultiplier = 0.2f;
                 }};
 
                 sevasWall = new Wall("sevas-wall"){{
                     requirements(Category.defense, with(DawneItems.caris, 5, DawneItems.vasil, 6, DawneItems.sevas, 8));
                     size = 1;
-                    health = 200;
+                    health = 250 * wallHealthMultiplier;
                     researchCostMultiplier = 0.2f;
                 }};
 
                 largeSevasWall = new Wall("large-sevas-wall"){{
                     requirements(Category.defense, with(DawneItems.caris, 20, DawneItems.vasil, 24, DawneItems.sevas, 32));
-                    health = 1000;
+                    health = 250 * 4 * wallHealthMultiplier;
                     researchCostMultiplier = 0.3f;
                 }};
 
                 tavorWall = new Wall("tavor-wall"){{
                     requirements(Category.defense, with(DawneItems.caris, 8, DawneItems.vasil, 6, DawneItems.sevas, 10, DawneItems.tavor, 6));
                     size = 1;
-                    health = 150;
+                    health = 300 * wallHealthMultiplier;
                     researchCostMultiplier = 0.3f;
                     lightningChance = 0.2f;
                     lightningDamage = 6;
@@ -554,7 +569,7 @@ public class DawneBlocks {
                 largeTavorWall = new Wall("large-tavor-wall"){{
                     requirements(Category.defense, with(DawneItems.caris, 32, DawneItems.vasil, 24, DawneItems.sevas, 40, DawneItems.tavor, 24));
                     size = 2;
-                    health = 800;
+                    health = 300 * 4 * wallHealthMultiplier;
                     researchCostMultiplier = 0.5f;
                     lightningChance = 0.4f;
                     lightningDamage = 8;
@@ -567,33 +582,33 @@ public class DawneBlocks {
                 //TODO create contingent unit for legion core or something else idk
                 coreLegion = new CoreBlock("core-legion"){{
                     requirements(Category.effect, with(DawneItems.erum, 4500, DawneItems.caris, 3500, DawneItems.vasil, 2500, DawneItems.kasev, 5000, DawneItems.sevas, 3000));
-                    health = 2200;
-                    size = 5;
+                    health = 4500;
+                    size = 3;
                     armor = 2;
-                    itemCapacity = 10000;
-                    unitCapModifier = 34;
+                    itemCapacity = 13000;
+                    unitCapModifier = 15;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.12f;
                 }};
 
                 coreAllegiance = new CoreBlock("core-allegiance"){{
                     requirements(Category.effect, with(DawneItems.erum, 6000, DawneItems.caris, 4000, DawneItems.vasil, 3000, DawneItems.kasev, 6000, DawneItems.sevas, 4000, DawneItems.actium, 2500));
-                    health = 4000;
-                    size = 6;
-                    armor = 4;
+                    health = 7500;
+                    size = 4;
+                    armor = 4f;
                     itemCapacity = 14000;
-                    unitCapModifier = 40;
+                    unitCapModifier = 28;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.2f;
                 }};
 
                 coreDevotion = new CoreBlock("core-devotion"){{
                     requirements(Category.effect, with(DawneItems.erum, 9000, DawneItems.caris, 6000, DawneItems.vasil, 4000, DawneItems.kasev, 10000, DawneItems.sevas, 5500, DawneItems.actium, 3000, DawneItems.aspec, 500));
-                    health = 6500;
-                    size = 8;
-                    armor = 10;
-                    itemCapacity = 22000;
-                    unitCapModifier = 55;
+                    health = 8500;
+                    size = 6;
+                    armor = 12f;
+                    itemCapacity = 18000;
+                    unitCapModifier = 35;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.24f;
                 }};
@@ -602,11 +617,11 @@ public class DawneBlocks {
                 // alternative to the Allegiance but the tech tree path for this won't lead to the Devotion
                 coreFidelity = new CoreBlock("core-fidelity"){{
                     requirements(Category.effect, with(DawneItems.erum, 4500, DawneItems.caris, 4500, DawneItems.vasil, 2500, DawneItems.kasev, 4500, DawneItems.sevas, 3500, DawneItems.actium, 3500));
-                    health = 3500;
-                    size = 7;
-                    armor = 2f;
-                    itemCapacity = 12000;
-                    unitCapModifier = 60;
+                    health = 6000;
+                    size = 5;
+                    armor = 8f;
+                    itemCapacity = 13500;
+                    unitCapModifier = 42;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.4f;
                 }};
@@ -614,15 +629,13 @@ public class DawneBlocks {
                 storageDeposit = new StorageBlock("storage-deposit"){{
                     requirements(Category.effect, with(DawneItems.vasil, 200));
                     size = 3;
-                    itemCapacity = 250;
-                    health = 25;
+                    itemCapacity = 400;
                 }};
 
                 largeStorageDeposit = new StorageBlock("large-storage-deposit"){{
                     requirements(Category.effect, with(DawneItems.vasil, 400, DawneItems.sevas, 250));
                     size = 4;
-                    itemCapacity = 850;
-                    health = 30;
+                    itemCapacity = 1500;
                     coreMerge = false;
                 }};
 
@@ -630,30 +643,27 @@ public class DawneBlocks {
                     requirements(Category.effect, with(DawneItems.vasil, 800, DawneItems.sevas, 500, DawneItems.caris, 400, DawneItems.kasev, 700));
                     size = 8;
                     itemCapacity = 6000;
-                    health = 45;
                     coreMerge = false;
                 }};
 
                 unitRepairStation = new RepairTower("unit-repair-station"){{
                     requirements(Category.units, with(DawneItems.caris, 50, DawneItems.kasev, 120, DawneItems.vasil, 20));
                     size = 2;
-                    health = 20;
                     range = 80f;
-                    healAmount = 0.25f;
+                    healAmount = 0.8f;
 
-                    consumePower(0.17f);
+                    consumePower(1.2f);
                 }};
 
                 unitPrimeRepairStation = new RepairTurret("unit-greater-repair-station"){{
                         requirements(Category.units, with(DawneItems.caris, 350, DawneItems.kasev, 200, DawneItems.erum, 200, DawneItems.vasil, 40, DawneItems.sevas, 200, DawneItems.aspec, 50, DawneItems.actium, 15));
-                        size = 5;
-                        health = 45;
-                        repairSpeed = 1.5f;
+                        size = 4;
+                        repairSpeed = 4f;
                         repairRadius = 120f;
                         beamWidth = 1.05f;
                         pulseRadius = 7f;
                         length = 6f;
-                        powerUse = 1.5f;
+                        powerUse = 5.5f;
 
                         consumeItems(with(DawneItems.kasev, 2, DawneItems.aspec, 1));
                 }};
@@ -664,110 +674,102 @@ public class DawneBlocks {
                     requirements(Category.turret, with(DawneItems.erum, 200, DawneItems.caris, 50, DawneItems.kasev, 400, DawneItems.vasil, 200, DawneItems.sevas, 50, DawneItems.actium, 20));
                     size = 3;
                     hasPower = true;
-                    health = 110;
                     force = 0f;
                     scaledForce = 0f;
                     range = 180f;
-                    damage = 1.25f;
+                    damage = 1f;
                     rotateSpeed = 6.5f;
                     targetGround = true;
                     targetAir = false;
 
-                    consumePower(2.4f);
+                    consumePower(8f);
                 }};
 
                 regenerator = new MendProjector("regenerator"){{
                     requirements(Category.effect, with(DawneItems.caris, 30, DawneItems.erum, 20));
                     size = 2;
-                    health = 20;
                     reload = 220f;
                     range = 60f;
                     healPercent = 4f;
                     phaseBoost = 5f;
                     phaseRangeBoost = -15f;
 
-                    consumePower(0.15f);
+                    consumePower(0.4f);
                     consumeItem(DawneItems.kasev).boost();
                 }};
 
                 massRegenerator = new MendProjector("mass-regenerator"){{
                     requirements(Category.effect, with(DawneItems.caris, 150, DawneItems.vasil, 40, DawneItems.kasev, 50, DawneItems.erum, 40));
                     size = 4;
-                    health = 30;
                     reload = 280f;
                     range = 150f;
                     healPercent = 12f;
                     phaseBoost = 16f;
                     phaseRangeBoost = -30f;
 
-                    consumePower(0.6f);
+                    consumePower(2f);
                     consumeItem(DawneItems.aspec).boost();
                 }};
 
                 energyProjector = new ForceProjector("energy-projector"){{
                     requirements(Category.effect, with(DawneItems.caris, 200, DawneItems.vasil, 80, DawneItems.kasev, 150));
-                    size = 4;
-                    health = 50;
+                    size = 3;
                     phaseRadiusBoost = 20f;
                     radius = 80f;
-                    shieldHealth = 250;
+                    shieldHealth = 500;
                     cooldownNormal = 1.6f;
                     cooldownLiquid = 1.2f;
                     cooldownBrokenBase = 0.35f;
 
                     itemConsumer = consumeItem(DawneItems.aspec).boost();
-                    consumePower(0.8f);
+                    consumePower(5f);
                 }};
 
                 massEnergyProjector = new ForceProjector("mass-energy-projector"){{
                     requirements(Category.effect, with(DawneItems.caris, 400, DawneItems.vasil, 100, DawneItems.kasev, 200, DawneItems.aspec, 50, DawneItems.actium, 80));
-                    size = 6;
-                    health = 60;
-                    phaseRadiusBoost = 40f;
-                    radius = 176f;
-                    shieldHealth = 800;
-                    cooldownNormal = 2f;
-                    cooldownLiquid = 1.4f;
+                    size = 5;
+                    radius = 160f;
+                    shieldHealth = 1800;
+                    cooldownNormal = 3f;
+                    cooldownLiquid = 2f;
                     cooldownBrokenBase = 0.4f;
 
                     itemConsumer = consumeItems(with(DawneItems.kasev, 1, DawneItems.aspec, 2));
-                    consumePower(1.4f);
+                    consumePower(12f);
                 }};
 
                 // you will probably never be able to build this yourself in the Dawne campaign
                 aegisFate = new BaseShield("aegis-fate"){{
                     requirements(Category.effect, with(DawneItems.erum, 600, DawneItems.vasil, 200, DawneItems.caris, 600, DawneItems.kasev, 560, DawneItems.aspec, 250, DawneItems.actium, 100, DawneItems.tavor, 200));
-                    size = 8;
-                    health = 120;
-                    radius = 120;
+                    size = 6;
+                    radius = 90;
 
-                    consumePower(8.5f);
+                    consumePower(30f);
                     consumeItems(with(DawneItems.kasev, 3, DawneItems.aspec, 2, DawneItems.tavor, 1));
                 }};
 
                 accelerator = new OverdriveProjector("accelerator"){{
                     requirements(Category.effect, with(DawneItems.caris, 80, DawneItems.vasil, 40, DawneItems.kasev, 50, DawneItems.aspec, 20));
                     size = 2;
-                    health = 20;
                     hasPower = true;
-                    reload = 180;
-                    range = 160;
+                    range = 90;
                     speedBoost = 1.5f;
-                    consumePower(0.15f);
+                    consumePower(4f);
                     hasBoost = false;
+
+                    consumeItem(DawneItems.aspec).boost();
                 }};
 
                 primeAccelerator = new OverdriveProjector("prime-accelerator"){{
                     requirements(Category.effect, with(DawneItems.caris, 350, DawneItems.vasil, 500, DawneItems.kasev, 250, DawneItems.sevas, 400, DawneItems.aspec, 85));
                     size = 4;
-                    health = 25;
                     hasPower = true;
                     reload = 180;
-                    range = 400;
+                    range = 180;
                     speedBoost = 2.8f;
                     useTime = 360;
                     itemCapacity = 15;
-                    consumePower(0.5f);
+                    consumePower(11.5f);
                     hasBoost = false;
 
                     consumeItems(with(DawneItems.kasev, 2, DawneItems.aspec, 3));
@@ -776,14 +778,13 @@ public class DawneBlocks {
                 massAccelerator = new OverdriveProjector("mass-accelerator"){{
                     requirements(Category.effect, with(DawneItems.caris, 800, DawneItems.vasil, 400, DawneItems.kasev, 500, DawneItems.sevas, 450, DawneItems.aspec, 200, DawneItems.tavor, 100));
                     size = 5;
-                    health = 30;
                     hasPower = true;
                     reload = 200;
-                    range = 960;
+                    range = 400;
                     speedBoost = 1.8f;
                     useTime = 250;
                     itemCapacity = 10;
-                    consumePower(2f);
+                    consumePower(16f);
                     hasBoost = false;
 
                     consumeItems(with(DawneItems.kasev, 5, DawneItems.aspec, 6, DawneItems.tavor, 2));
