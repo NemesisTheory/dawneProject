@@ -1,6 +1,7 @@
 package dawneproject.content;
 
 import arc.graphics.Color;
+import dawneproject.content.world.blocks.power.ThermonuclearReactor;
 import mindustry.entities.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.*;
@@ -34,10 +35,9 @@ public class DawneBlocks {
     public static Block
     // distribution - Dawne
 
-    erumConveyor, erumJunction, erumBridge, erumRouter, erumOverflow, erumUnderflow, erumSorter, erumInvertedSorter,
-    aspecTransporter, massTransporter,
+    erumConveyor, erumBridge, erumRouter, aspecTransporter, massTransporter,
 
-    // liquid distribution TODO something
+    // liquid distribution
 
 
 
@@ -47,7 +47,7 @@ public class DawneBlocks {
 
     // power - Dawne
 
-    dawnePowernode, dawneLargePowerNode, dawneBattery, dawneLargeBattery, massCapacitor, thermalCondenser, solarArray,
+    energyNode, energySpire, energyRelay, energyCell, accumulator, massCapacitor, thermalCondenser, solarArray,
     thermonuclearReactor, fusionReactor,
 
     // drill
@@ -56,7 +56,7 @@ public class DawneBlocks {
 
     // pewpews - Dawne
 
-    fracture, rupture, broadside, rend,
+    fracture, rupture, broadside, rend, forebode,
 
     // wall - Dawne
 
@@ -83,22 +83,12 @@ public class DawneBlocks {
     regenerator, massRegenerator, energyProjector, massEnergyProjector, aegisFate, accelerator, primeAccelerator, massAccelerator, reinforcer;
 
     public static void load() {
-        erumConveyor = new Conveyor("erum-conveyor") {{
+        erumConveyor = new StackConveyor("erum-conveyor") {{
             requirements(Category.distribution, with(DawneItems.erum, 1));
             health = 50;
-            speed = 0.03f;
-            displayedSpeed = 4.2f;
+            speed = 4f / 60f;
+            itemCapacity = 8;
             researchCost = with(Items.scrap, 5);
-            junctionReplacement = erumJunction;
-            bridgeReplacement = erumBridge;
-        }};
-
-        erumJunction = new Junction("erum-junction") {{
-            requirements(Category.distribution, with(DawneItems.erum, 2));
-            health = 50;
-            speed = 12f;
-            capacity = 1;
-            buildCostMultiplier = 3f;
         }};
 
         erumBridge = new BufferedItemBridge("erum-bridge") {{
@@ -110,42 +100,17 @@ public class DawneBlocks {
             bufferCapacity = 3;
         }};
 
-        erumRouter = new Router("erum-router") {{
+        erumRouter = new StackRouter("erum-router") {{
             requirements(Category.distribution, with(DawneItems.erum, 2));
             health = 50;
+            speed = 5f;
             buildCostMultiplier = 2f;
-        }};
-
-        erumOverflow = new OverflowGate("erum-overflow") {{
-            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 50;
-            buildCostMultiplier = 1f;
-        }};
-
-        erumUnderflow = new OverflowGate("erum-underflow") {{
-            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 50;
-            buildCostMultiplier = 1f;
-            invert = true;
-        }};
-
-        erumSorter = new Sorter("erum-sorter") {{
-            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 50;
-            buildCostMultiplier = 1f;
-        }};
-
-        erumInvertedSorter = new Sorter("erum-inverted-sorter") {{
-            requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.caris, 1));
-            health = 50;
-            buildCostMultiplier = 1f;
-            invert = true;
         }};
 
         aspecTransporter = new ItemBridge("aspec-transporter") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.aspec, 3));
             health = 50;
-            range = 3;
+            range = 8;
             buildCostMultiplier = 1f;
             conductivePower = true;
             hasPower = true;
@@ -235,29 +200,42 @@ public class DawneBlocks {
             consumePower(5f);
         }};
 
-        dawnePowernode = new PowerNode("dawne-power-node"){{
+        energyNode = new BeamNode("energy-node"){{
             requirements(Category.power, with(DawneItems.erum, 1, DawneItems.caris, 2));
             health = 60;
-            maxNodes = 8;
-            laserRange = 8;
+            consumesPower = outputsPower = true;
+            range = 6;
+            fogRadius = 1;
+            consumePowerBuffered(100f);
         }};
 
-        dawneLargePowerNode = new PowerNode("dawne-large-power-node"){{
-            requirements(Category.power, with(DawneItems.caris, 10, DawneItems.vasil, 5, DawneItems.kasev, 2));
+        energySpire = new BeamNode("energy-spire"){{
+            requirements(Category.power, with(DawneItems.caris, 50, DawneItems.vasil, 20, DawneItems.kasev, 40));
             health = 80;
             size = 3;
-            maxNodes = 15;
-            laserRange = 12;
+            range = 16;
+            fogRadius = 1;
+            consumePowerBuffered(450f);
         }};
 
-        dawneBattery = new Battery("dawne-battery"){{
+        energyRelay = new LongPowerNode("energy-relay"){{
+            requirements(Category.power, with(DawneItems.vasil, 500, DawneItems.kasev, 800, DawneItems.aspec, 350));
+            size = 4;
+            maxNodes = 2;
+            autolink = false;
+            laserRange = 480f;
+            fogRadius = 1;
+            consumePowerBuffered(800f);
+        }};
+
+        energyCell = new Battery("energy-cell"){{
             requirements(Category.power, with(DawneItems.erum, 5, DawneItems.caris, 10));
             size = 2;
             consumePowerBuffered(4500f);
             baseExplosiveness = 2f;
         }};
 
-        dawneLargeBattery = new Battery("dawne-large-battery"){{
+        accumulator = new Battery("accumulator"){{
             requirements(Category.power, with(DawneItems.caris, 20, DawneItems.vasil, 50, DawneItems.kasev, 25));
             size = 4;
             consumePowerBuffered(60000f);
@@ -278,7 +256,7 @@ public class DawneBlocks {
             floating = true;
             ambientSound = Sounds.hum;
             ambientSoundVolume = 0.04f;
-            powerProduction = 2f;
+            powerProduction = 0.5f;
             size = 2;
         }};
 
@@ -288,7 +266,7 @@ public class DawneBlocks {
             powerProduction = 0.8f;
         }};
 
-        thermonuclearReactor = new NuclearReactor("thermonuclear-reactor") {{
+        thermonuclearReactor = new ThermonuclearReactor("thermonuclear-reactor") {{
             requirements(Category.power, with(DawneItems.erum, 850, DawneItems.caris, 250, DawneItems.vasil, 400, DawneItems.kasev, 600, DawneItems.actium, 300));
             ambientSound = Sounds.hum;
             ambientSoundVolume = 0.24f;
@@ -314,6 +292,7 @@ public class DawneBlocks {
             consumeLiquid(Liquids.water, 0.06f).boost();
         }};
 
+        // TODO create `NuclearDrill` class
         nuclearDrill = new Drill("nuclear-drill"){{
             requirements(Category.production, with(DawneItems.erum, 60, DawneItems.kasev, 80, DawneItems.vasil, 50, DawneItems.sevas, 80));
             drillTime = 240;
