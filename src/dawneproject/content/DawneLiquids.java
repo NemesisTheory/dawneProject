@@ -25,8 +25,8 @@ public class DawneLiquids {
             canStayOn.add(water);
         }};
 
-        // cools down: Reactors (TODO)
-        hypercoolant = new Liquid("hypercoolant", Color.valueOf("111111")){{
+        // cools down: Reactors, discharge drill (TODO)
+        hypercoolant = new Liquid("hypercoolant", Color.valueOf("8b44b8")){{
             viscosity = 0.04f;
             flammability = 0f;
             explosiveness = 0f;

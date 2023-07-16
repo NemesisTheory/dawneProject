@@ -5,22 +5,22 @@ import dawneproject.content.world.blocks.power.ThermonuclearReactor;
 import mindustry.entities.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.*;
-import mindustry.type.UnitType;
+import mindustry.type.LiquidStack;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.TractorBeamTurret;
 import mindustry.world.blocks.distribution.*;
-import mindustry.content.Items;
 import mindustry.content.Fx;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.blocks.liquid.LiquidBridge;
+import mindustry.world.blocks.liquid.LiquidRouter;
 import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.defense.*;
 import mindustry.gen.Sounds;
 import mindustry.content.Liquids;
 import mindustry.world.blocks.storage.CoreBlock;
-import mindustry.world.consumers.ConsumeLiquid;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.entities.pattern.ShootSpread;
 import mindustry.content.UnitTypes;
@@ -35,15 +35,15 @@ public class DawneBlocks {
     public static Block
     // distribution - Dawne
 
-    erumConveyor, erumBridge, erumRouter, aspecTransporter, massTransporter,
+    transporter, bridgeTransporter, routerTransporter, aspecConveyor, massTransporter, materialHandlingSystem,
 
     // liquid distribution
 
-
+    fluidArch, fluidRouter, fluidTank,
 
     // production - Dawne
 
-    carisPress, kasevForge, actiumSmelter, aspecMixer, tavorSmelter,
+    carisPress, kasevForge, actiumSmelter, aspecMixer, tavorSmelter, napalmMixer, camberHeatSink, hypercoolantSynthesizer,
 
     // power - Dawne
 
@@ -52,7 +52,7 @@ public class DawneBlocks {
 
     // drill
 
-    thermalDrill, nuclearDrill,
+    thermalDrill, rotaryDrill, nuclearDrill, dischargeDrill,
 
     // pewpews - Dawne
 
@@ -83,15 +83,15 @@ public class DawneBlocks {
     regenerator, massRegenerator, energyProjector, massEnergyProjector, aegisFate, accelerator, primeAccelerator, massAccelerator, reinforcer;
 
     public static void load() {
-        erumConveyor = new StackConveyor("erum-conveyor") {{
+        transporter = new StackConveyor("transporter") {{
             requirements(Category.distribution, with(DawneItems.erum, 1));
             health = 50;
             speed = 4f / 60f;
             itemCapacity = 8;
-            researchCost = with(Items.scrap, 5);
+            researchCost = with(DawneItems.erum, 5);
         }};
 
-        erumBridge = new BufferedItemBridge("erum-bridge") {{
+        bridgeTransporter = new BufferedItemBridge("bridge-transporter") {{
             requirements(Category.distribution, with(DawneItems.erum, 4, DawneItems.caris, 2));
             health = 50;
             range = 4;
@@ -100,14 +100,14 @@ public class DawneBlocks {
             bufferCapacity = 3;
         }};
 
-        erumRouter = new StackRouter("erum-router") {{
+        routerTransporter = new StackRouter("router-transporter") {{
             requirements(Category.distribution, with(DawneItems.erum, 2));
             health = 50;
             speed = 5f;
             buildCostMultiplier = 2f;
         }};
 
-        aspecTransporter = new ItemBridge("aspec-transporter") {{
+        aspecConveyor = new ItemBridge("aspec-conveyor") {{
             requirements(Category.distribution, with(DawneItems.erum, 2, DawneItems.aspec, 3));
             health = 50;
             range = 8;
@@ -131,6 +131,39 @@ public class DawneBlocks {
             hasPower = true;
 
             consumePower(10f);
+        }};
+
+        materialHandlingSystem = new StackConveyor("mhs"){{
+            requirements(Category.distribution, with(DawneItems.erum, 3, DawneItems.kasev, 2, DawneItems.sevas, 1));
+            health = 80;
+            size = 2;
+            speed = 2f / 60f;
+            itemCapacity = 80;
+        }};
+
+        fluidArch = new LiquidBridge("fluid-arch"){{
+            requirements(Category.liquid, with(DawneItems.caris, 4, DawneItems.vasil, 5, DawneItems.erum, 2));
+            health = 50;
+            range = 8;
+            hasPower = false;
+            fadeIn = moveArrows = false;
+            arrowSpacing = 6.5f;
+        }};
+
+        fluidRouter = new LiquidRouter("fluid-router"){{
+            requirements(Category.liquid, with(DawneItems.caris, 4, DawneItems.erum, 4));
+            health = 50;
+            liquidCapacity = 30f;
+            underBullets = true;
+            solid = false;
+        }};
+
+        fluidTank = new LiquidRouter("fluid-tank"){{
+            requirements(Category.liquid, with(DawneItems.caris, 20, DawneItems.vasil, 30, DawneItems.erum, 20));
+            health = 600;
+            size = 4;
+            solid = true;
+            liquidCapacity = 2000f;
         }};
 
         carisPress = new GenericCrafter("caris-press") {{
@@ -200,6 +233,26 @@ public class DawneBlocks {
             consumePower(5f);
         }};
 
+        camberHeatSink = new GenericCrafter("camber-heat-sink"){{
+            requirements(Category.crafting, with(DawneItems.erum,  50, DawneItems.caris, 80, DawneItems.vasil, 220, DawneItems.kasev, 80));
+            size = 4;
+            hasPower = true;
+            hasLiquids = true;
+            hasItems = true;
+            rotate = false;
+            solid = true;
+            craftTime = 250f;
+            itemCapacity = 15;
+            liquidCapacity = 30f;
+            outputsLiquid = true;
+
+            outputLiquid = new LiquidStack(DawneLiquids.camberCoolant, 10f / 60f);
+
+            consumePower(4f);
+            consumeItems(with(DawneItems.rime, 2, DawneItems.erum, 1));
+            consumeLiquid(Liquids.slag, 14f / 60f);
+        }};
+
         energyNode = new BeamNode("energy-node"){{
             requirements(Category.power, with(DawneItems.erum, 1, DawneItems.caris, 2));
             health = 60;
@@ -223,7 +276,7 @@ public class DawneBlocks {
             size = 4;
             maxNodes = 2;
             autolink = false;
-            laserRange = 480f;
+            laserRange = 40f;
             fogRadius = 1;
             consumePowerBuffered(800f);
         }};
@@ -284,7 +337,7 @@ public class DawneBlocks {
         thermalDrill = new Drill("thermal-drill"){{
             requirements(Category.production, with(DawneItems.erum, 40, DawneItems.caris, 10));
             tier = 3;
-            size = 3;
+            size = 2;
             drillTime = 400;
             updateEffect = Fx.pulverizeMedium;
             drillEffect = Fx.mineBig;
@@ -292,11 +345,23 @@ public class DawneBlocks {
             consumeLiquid(Liquids.water, 0.06f).boost();
         }};
 
+        rotaryDrill = new Drill("rotary-drill"){{
+            requirements(Category.production, with(DawneItems.erum, 40, DawneItems.kasev, 50, DawneItems.vasil, 40));
+            drillTime = 340;
+            tier = 3;
+            size = 3;
+            updateEffect = Fx.pulverizeMedium;
+            drillEffect = Fx.mineBig;
+
+            consumePower(1.4f);
+            consumeLiquid(Liquids.water, 0.08f).boost();
+        }};
+
         // TODO create `NuclearDrill` class
         nuclearDrill = new Drill("nuclear-drill"){{
             requirements(Category.production, with(DawneItems.erum, 60, DawneItems.kasev, 80, DawneItems.vasil, 50, DawneItems.sevas, 80));
-            drillTime = 240;
-            size = 5;
+            drillTime = 210;
+            size = 4;
             hasPower = true;
             tier = 4;
             updateEffect = Fx.pulverizeMedium;
@@ -306,16 +371,34 @@ public class DawneBlocks {
             warmupSpeed = 0.01f;
             itemCapacity = 10;
 
-            liquidBoostIntensity = 1.4f;
-
             consumePower(5f);
             consumeLiquid(DawneLiquids.camberCoolant, 0.01f).boost();
+        }};
+
+        dischargeDrill = new Drill("discharge-drill"){{
+            requirements(Category.production, with(DawneItems.erum, 120, DawneItems.caris, 20, DawneItems.kasev, 100, DawneItems.vasil, 120, DawneItems.sevas, 100));
+            drillTime = 280;
+            size = 5;
+            hasPower = true;
+            tier = 5;
+            updateEffect = Fx.pulverizeMedium;
+            updateEffectChance = 0.02f;
+            drillEffect = Fx.mineHuge;
+            rotateSpeed = 8f;
+            warmupSpeed = 0.015f;
+            itemCapacity = 15;
+
+            liquidBoostIntensity = 1.1f;
+
+            consumePower(6f);
+            consumeLiquid(DawneLiquids.hypercoolant, 0.01f);
         }};
 
         fracture = new ItemTurret("fracture") {{
                 requirements(Category.turret, with(DawneItems.erum, 75, DawneItems.caris, 30));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
                 recoil = 3f;
+                shoot = new ShootAlternate(4f);
                 reload = 40f;
                 range = 120;
                 shootCone = 1f;
@@ -332,7 +415,7 @@ public class DawneBlocks {
                 rotateSpeed = 1.5f;
                 researchCostMultiplier = 0.05f;
                 ammo(
-                        DawneItems.verent, new BasicBulletType(8f, 25) {{
+                        DawneItems.verent, new BasicBulletType(8f, 15) {{
                             lifetime = 17.5f;
                             width = 12f;
                             hitSize = 7f;
@@ -350,7 +433,7 @@ public class DawneBlocks {
                             hitEffect = despawnEffect = Fx.hitBulletColor;
                             buildingDamageMultiplier = 0.2f;
                         }},
-                        DawneItems.caris, new BasicBulletType(9f, 40) {{
+                        DawneItems.caris, new BasicBulletType(9f, 35) {{
                                 lifetime = 17.5f;
                                 width = 12f;
                                 hitSize = 7f;
@@ -396,11 +479,9 @@ public class DawneBlocks {
                 rotateSpeed = 2.5f;
                 researchCostMultiplier = 0.06f;
                 ammo(
-                        DawneItems.verent, new BasicBulletType() {{
-                                damage = 35;
+                        DawneItems.verent, new BasicBulletType(4.25f, 15) {{
                                 pierce = true;
                                 pierceCap = 3;
-                                speed = 4.25f;
                                 width = height = 16;
                                 shrinkY = 0.3f;
                                 velocityRnd = 0.11f;
@@ -419,9 +500,7 @@ public class DawneBlocks {
 
                                 hitEffect = despawnEffect = Fx.hitBulletColor;
                             }},
-                        DawneItems.vasil, new BasicBulletType(){{
-                            damage = 60;
-                            speed = 4.25f;
+                        DawneItems.vasil, new BasicBulletType(4.25f, 35){{
                             width = height = 16;
                             shrinkY = 0.3f;
                             velocityRnd = 0.11f;

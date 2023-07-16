@@ -2,6 +2,7 @@ package dawneproject.content;
 
 import arc.graphics.Color;
 import arc.struct.Seq;
+import dawneproject.content.type.ExtrasItem;
 import mindustry.type.Item;
 
 public class DawneItems {
@@ -9,11 +10,11 @@ public class DawneItems {
 
     //raw - Dawne
 
-    erum, verent, vasil, sevas, talcPowder,
+    erum, verent, vasil, rime, sevas, talcPowder,
 
     //manufactured - Dawne
 
-    caris, circin, kasev, actium, aspec, tavor;
+    caris, napalm, kasev, actium, aspec, tavor;
 
     public static Seq<Item> DawneItems = new Seq<>();
     public static Seq<Item> DawneOnlyItems = new Seq<>();
@@ -26,18 +27,20 @@ public class DawneItems {
 
     public static void load() {
         // copper + lead
-        erum = new Item("erum", Color.valueOf("3f3f3f")){{
+        erum = new ExtrasItem("erum", Color.valueOf("3f3f3f")){{
             cost = 1.0f;
             hardness = 2;
             radioactivity = 0.15f;
+            temperature = 1.24f;
         }};
 
         // coal
-        verent = new Item("verent", Color.valueOf("151515")){{
+        verent = new ExtrasItem("verent", Color.valueOf("151515")){{
             flammability = 0.15f;
             cost = 1.0f;
             hardness = 1;
             explosiveness = 0.20f;
+            temperature = -0.25f;
         }};
 
         // titanium
@@ -46,6 +49,12 @@ public class DawneItems {
             cost = 1.2f;
             hardness = 3;
             radioactivity = 1.3f;
+        }};
+
+        // titanium v2
+        rime = new ExtrasItem("rime", Color.valueOf("a5f2f3")){{
+            hardness = 1;
+            temperature = 2.4f;
         }};
 
         // thorium TODO name change
@@ -74,10 +83,11 @@ public class DawneItems {
         }};
 
         // pyratite + blast compound
-        circin = new Item("circin", Color.valueOf("cf5a3a")){{
+        napalm = new ExtrasItem("napalm", Color.valueOf("cf5a3a")){{
             flammability = 2f;
             cost = 1f;
             explosiveness = 1.45f;
+            temperature = -3.5f;
         }};
 
         // plastanium
@@ -110,13 +120,13 @@ public class DawneItems {
 
         //side note these names are so bad god damn
 
-        DawneItems.addAll(erum,verent, vasil, sevas, talcPowder, caris, circin, kasev, actium, aspec, tavor);
-        DawneOnlyItems.addAll(erum, verent, vasil, sevas, talcPowder, caris, circin, kasev, actium, aspec, tavor);
+        DawneItems.addAll(erum, verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
+        DawneOnlyItems.addAll(erum, verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
 
-        VolirItems.addAll(erum,verent, vasil, sevas, talcPowder, caris, circin, kasev, actium, aspec, tavor);
-        VolirOnlyItems.addAll(erum, verent, vasil, sevas, talcPowder, caris, circin, kasev, actium, aspec, tavor);
+        VolirItems.addAll(erum,verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
+        VolirOnlyItems.addAll(erum, verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
 
-        ConcordItems.addAll(erum,verent, vasil, sevas, talcPowder, caris, circin, kasev, actium, aspec, tavor);
-        ConcordOnlyItems.addAll(erum, verent, vasil, sevas, talcPowder, caris, circin, kasev, actium, aspec, tavor);
+        ConcordItems.addAll(erum,verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
+        ConcordOnlyItems.addAll(erum, verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
     }
 }
