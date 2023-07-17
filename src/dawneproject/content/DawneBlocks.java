@@ -637,7 +637,7 @@ public class DawneBlocks {
                 }};
 
 
-                //TODO create contingent unit for legion core or something else idk
+                //TODO create more core units
                 coreLegion = new CoreBlock("core-legion"){{
                     requirements(Category.effect, with(DawneItems.erum, 4500, DawneItems.caris, 3500, DawneItems.vasil, 2500, DawneItems.kasev, 5000, DawneItems.sevas, 3000));
                     health = 4500;
@@ -645,7 +645,7 @@ public class DawneBlocks {
                     armor = 2;
                     itemCapacity = 13000;
                     unitCapModifier = 15;
-                    unitType = UnitTypes.gamma;
+                    unitType = DawneUnitTypes.contingent;
                     researchCostMultiplier = 0.12f;
                 }};
 

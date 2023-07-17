@@ -1,12 +1,18 @@
 package dawneproject.content;
 
+import arc.struct.ObjectSet;
+import mindustry.entities.abilities.ForceFieldAbility;
+import mindustry.entities.abilities.StatusFieldAbility;
 import mindustry.entities.bullet.*;
+import mindustry.entities.pattern.ShootAlternate;
+import mindustry.entities.pattern.ShootBarrel;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.world.meta.*;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
+import mindustry.ai.types.*;
 
 public class DawneUnitTypes {
 
@@ -34,6 +40,139 @@ public class DawneUnitTypes {
     contingent;
 
     public static void load() {
+
+        hymn = new UnitType("hymn"){{
+            aiController = SuicideAI::new;
+
+            hitSize = 16;
+            constructor = UnitEntity::create;
+            health = 450;
+            armor = 4;
+            speed = 1.4f;
+            rotateSpeed = 190;
+            legCount = 4;
+            legLength = 12;
+            legBaseOffset = 5;
+            legExtension = -1;
+            legSpeed = 0.8f;
+            legGroupSize = 3;
+            allowLegStep = true;
+            drawShields = true;
+            range = 50;
+            mechSideSway = 0.3f;
+            deathSound = Sounds.explosionbig;
+
+            weapons.add(new Weapon("hymn1"){{
+                shootOnDeath = true;
+                reload = 24;
+                shootCone = 180f;
+                shootSound = Sounds.explosionbig;
+                x = shootY = 0f;
+                mirror = false;
+                top = false;
+                ignoreRotation = true;
+                bullet = new BulletType(){{
+                    collidesTiles = false;
+                    rangeOverride = 40;
+                    collides = false;
+                    hitSound = Sounds.explosionbig;
+                    speed = 0f;
+                    hitEffect = Fx.pulverizeMedium;
+                    instantDisappear = true;
+                    killShooter = true;
+                    hittable = false;
+                    collidesAir = true;
+                    splashDamage = 180;
+                    splashDamageRadius = 40;
+                    makeFire = true;
+                    incendAmount = 3;
+                    incendSpread = 6;
+                    incendChance = 0.85f;
+                    shootEffect = Fx.impactReactorExplosion;
+                }};
+            }});
+
+        }};
+
+        anthem = new UnitType("anthem"){{
+            hitSize = 28;
+            constructor = UnitEntity::create;
+            health = 650;
+            targetAir = false;
+            armor = 2;
+            speed = 0.68f;
+            rotateSpeed = 2.4f;
+            legCount = 6;
+            legLength = 14;
+            legBaseOffset = 5;
+            legExtension = -1;
+            legSpeed = 0.8f;
+            legGroupSize = 3;
+            allowLegStep = true;
+            legSplashDamage = 10;
+            legSplashRange = 12;
+            drawShields = true;
+            range = 50;
+            mechSideSway = 0.30f;
+            deathSound = Sounds.explosionbig;
+
+            immunities = ObjectSet.with(StatusEffects.shocked, StatusEffects.overclock, StatusEffects.wet, StatusEffects.electrified);
+
+            weapons.add(new Weapon("anthemrail"){{
+                rotate = false;
+                x = 6;
+                y = 3;
+                reload = 154;
+                recoil = 3.4f;
+                shake = 2;
+                shootSound = Sounds.shotgun;
+                bullet = new BasicBulletType(40, 65){{
+                    width = 0;
+                    height = 0;
+                    hitSize = 4;
+                    lifetime = 5;
+                    hittable = false;
+                    collidesAir = false;
+                    absorbable = false;
+                    pierce = true;
+                    pierceCap = 3;
+                    pierceArmor = true;
+                    pierceBuilding = true;
+                    status = DawneStatusEffects.destabilized;
+                    statusDuration = 20;
+                }};
+            }});
+            weapons.add(new Weapon("anthemauto"){{
+                rotate = true;
+                x = 0;
+                y = -3;
+                mirror = true;
+                reload = 8;
+                shoot = new ShootAlternate(){{
+                    shots = 4;
+                    barrels = 2;
+                }};
+                inaccuracy = 2;
+                shootCone = 8;
+                recoil = 4;
+                shake = 1.4f;
+                shootSound = Sounds.shootBig;
+                bullet = new BasicBulletType(10, 12){{
+                    hitSize = 4;
+                    lifetime = 20.5f;
+                    hittable = true;
+                    absorbable = true;
+                    pierce = true;
+                    pierceCap = 2;
+                    pierceArmor = false;
+                    pierceBuilding = true;
+                }};
+            }});
+            abilities.add(new ForceFieldAbility(30f, 0.9f, 140f, 425));
+
+            abilities.add(new StatusFieldAbility(StatusEffects.overclock, 220, 520, 185));
+        }};
+
         portent = new UnitType("portent") {{
             health = 360;
             constructor = UnitEntity::create;
@@ -56,12 +195,13 @@ public class DawneUnitTypes {
                 minShootVelocity = 0.75f;
                 x = 3f;
                 shootY = 0f;
-                reload = 8f;
+                reload = 12f;
                 shootCone = 180f;
                 ejectEffect = Fx.none;
-                inaccuracy = 18f;
+                inaccuracy = 48f;
+                shoot.shots = 6;
+                shoot.shotDelay = 3f;
                 ignoreRotation = true;
-                shootSound = Sounds.none;
                 bullet = new BombBulletType(25f, 16.8f) {{
                     width = 8f;
                     height = 10f;
@@ -71,6 +211,150 @@ public class DawneUnitTypes {
 
                     status = StatusEffects.blasted;
                     statusDuration = 30f;
+                }};
+            }});
+        }};
+
+        deathwish = new UnitType("deathwish") {
+            {
+                health = 12580;
+                constructor = UnitEntity::create;
+                hitSize = 32;
+                armor = 12;
+                speed = 0.85f;
+                rotateSpeed = 2.4f;
+                range = 144;
+                mechSideSway = 0.30f;
+                mechFrontSway = 1.2f;
+                mechStepParticles = true;
+                stepShake = 0.21f;
+                drownTimeMultiplier = 5;
+                deathSound = Sounds.explosionbig;
+
+                immunities = ObjectSet.with(StatusEffects.shocked, StatusEffects.burning, DawneStatusEffects.destabilized, DawneStatusEffects.shutdown);
+
+                weapons.add(new Weapon("deathwish1") {
+                    {
+                        top = false;
+                        mirror = false;
+                        shake = 1;
+                        reload = 280;
+                        recoil = 64;
+                        rotate = false;
+                        bullet = new BasicBulletType(5, 0) {
+                            {
+                                lifetime = 10;
+                                width = 0;
+                                height = 0;
+                                hitSize = 0;
+                            }
+                        };
+                    }
+                });
+                weapons.add(new Weapon("deathwish2"){{
+                    controllable = false;
+                    autoTarget = true;
+                    shake = 2;
+                    rotate = true;
+                    targetInterval = 15;
+                    targetSwitchInterval = 20;
+                    rotateSpeed = 2.2f;
+                    reload = 6;
+                    recoil = 2;
+                    bullet = new BasicBulletType(10, 42){{
+                        inaccuracy = 6;
+                        x = 0;
+                        y = 16;
+                        shootCone = 12;
+                        shoot = new ShootAlternate(){
+                            {
+                                shots = 4;
+                                barrels = 3;
+                                spread = 4f;
+                                shotDelay = 0.5f;
+                                width = 10;
+                            }};
+                        height = 16;
+                        width = 10;
+                        hitSize = 6;
+                        lifetime = 28;
+                        hittable = true;
+                        collidesAir = true;
+                        absorbable = true;
+                        pierce = true;
+                        pierceCap = 3;
+                        pierceArmor = true;
+                        pierceBuilding = true;
+                        mirror = true;
+                        }};
+                    }});
+                }};
+
+        contingent = new UnitType("contingent"){{
+            flying = true;
+            health = 350;
+            constructor = UnitEntity::create;
+            speed = 4.25f;
+            accel = 0.8f;
+            mineTier = 3;
+            buildSpeed = 0.89f;
+            mineSpeed = 1.5f;
+            armor = 2;
+            engineOffset = 0;
+            engineSize = 2;
+            hitSize = 16;
+            rotateSpeed = 16;
+            itemCapacity = 25;
+
+            immunities = ObjectSet.with(StatusEffects.melting, DawneStatusEffects.destabilized);
+
+            weapons.add(new Weapon("contingent-laser"){{
+                rotate = false;
+                x = 0;
+                y = 0;
+                reload = 135;
+                recoil = 3.6f;
+                shake = 2;
+                shootSound = Sounds.laser;
+                drag = 0.011f;
+                bullet = new LaserBulletType(120){{
+                    status = DawneStatusEffects.destabilized;
+                    statusDuration = 30;
+                    length = 173;
+                    hitSize = 4;
+                    lifetime = 16;
+                    drawSize = 400;
+                    collidesAir = true;
+                    absorbable = true;
+                    pierce = true;
+                    pierceCap = 4;
+                    buildingDamageMultiplier = 0.01f;
+                }};
+            }});
+            weapons.add(new Weapon("contingent-machine"){{
+                rotate = true;
+                x = 0;
+                y = 0;
+                reload = 6;
+                recoil = 1.5f;
+                shake = 2;
+                shootSound = Sounds.pew;
+                drag = 0.02f;
+                bullet = new BasicBulletType(5, 20){{
+                    hitSize = 3;
+                    width = 4;
+                    height = 8;
+                    lifetime = 32;
+                    shoot = new ShootAlternate(){
+                        {
+                            shots = 3;
+                            barrels = 3;
+                        }};
+                    collidesAir = false;
+                    absorbable = true;
+                    inaccuracy = 4;
+                    shootCone = 8;
+                    buildingDamageMultiplier = 0.01f;
                 }};
             }});
         }};
