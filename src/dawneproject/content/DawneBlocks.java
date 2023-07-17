@@ -398,8 +398,8 @@ public class DawneBlocks {
                 requirements(Category.turret, with(DawneItems.erum, 75, DawneItems.caris, 30));
                 Effect frt = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
                 recoil = 3f;
-                shoot = new ShootAlternate(4f);
-                reload = 40f;
+                shoot = new ShootAlternate(5f);
+                reload = 30f;
                 range = 120;
                 shootCone = 1f;
                 inaccuracy = 0.5f;
@@ -412,7 +412,7 @@ public class DawneBlocks {
                 ammoPerShot = 2;
                 shootY = -1;
                 size = 3;
-                rotateSpeed = 1.5f;
+                rotateSpeed = 4.5f;
                 researchCostMultiplier = 0.05f;
                 ammo(
                         DawneItems.verent, new BasicBulletType(8f, 15) {{
@@ -458,10 +458,10 @@ public class DawneBlocks {
         };
 
         rupture = new ItemTurret("rupture") {{
-                requirements(Category.turret, with(DawneItems.erum, 80, DawneItems.caris, 30));
+                requirements(Category.turret, with(DawneItems.erum, 120, DawneItems.caris, 80));
                 range = 240;
                 recoil = 2f;
-                reload = 10f;
+                reload = 16f;
                 shootCone = 12f;
                 inaccuracy = 8f;
                 shoot = new ShootAlternate(){{
@@ -471,12 +471,12 @@ public class DawneBlocks {
                     }};
                 targetAir = true;
                 targetGround = false;
-                coolantMultiplier = 0.6f;
+                coolantMultiplier = 0.8f;
                 coolant = consumeCoolant(0.2f);
                 hasLiquids = true;
                 shake = 1f;
                 size = 4;
-                rotateSpeed = 2.5f;
+                rotateSpeed = 8.5f;
                 researchCostMultiplier = 0.06f;
                 ammo(
                         DawneItems.verent, new BasicBulletType(4.25f, 15) {{

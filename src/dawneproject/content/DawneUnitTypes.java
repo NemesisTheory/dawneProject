@@ -12,7 +12,6 @@ public class DawneUnitTypes {
 
     public static UnitType
 
-            //yes most of these names are from Architects songs
 
     // specialist ground
 
@@ -35,8 +34,9 @@ public class DawneUnitTypes {
     contingent;
 
     public static void load() {
-        /* portent = new UnitType("portent") {{
-            health = 60;
+        portent = new UnitType("portent") {{
+            health = 360;
+            constructor = UnitEntity::create;
             speed = 2.85f;
             accel = 0.09f;
             drag = 0.008f;
@@ -46,11 +46,11 @@ public class DawneUnitTypes {
             engineOffset = 6f;
             range = 140f;
             faceTarget = false;
-            armor = 0f;
-            itemCapacity = 0;
+            armor = 1f;
+            itemCapacity = 5;
             targetFlags = new BlockFlag[]{BlockFlag.factory, null};
             circleTarget = true;
-            ammoType = new ItemAmmoType(DawneItems.caris);
+            ammoType = new ItemAmmoType(DawneItems.napalm);
 
             weapons.add(new Weapon() {{
                 minShootVelocity = 0.75f;
@@ -73,6 +73,6 @@ public class DawneUnitTypes {
                     statusDuration = 30f;
                 }};
             }});
-        }};*/
+        }};
     }
 }
