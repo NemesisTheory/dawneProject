@@ -62,7 +62,7 @@ public class DawneUnitTypes {
                 inaccuracy = 18f;
                 ignoreRotation = true;
                 shootSound = Sounds.none;
-                bullet = new BombBulletType(6f, 16.8f) {{
+                bullet = new BombBulletType(25f, 16.8f) {{
                     width = 8f;
                     height = 10f;
                     hitEffect = Fx.flakExplosion;
