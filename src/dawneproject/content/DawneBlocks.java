@@ -815,7 +815,7 @@ public class DawneBlocks {
                     consumePower(1.2f);
                 }};
 
-                unitPrimeRepairStation = new RepairTurret("unit-greater-repair-station"){{
+                unitPrimeRepairStation = new RepairTurret("unit-prime-repair-station"){{
                         requirements(Category.units, with(DawneItems.caris, 350, DawneItems.kasev, 200, DawneItems.erum, 200, DawneItems.vasil, 40, DawneItems.sevas, 200, DawneItems.aspec, 50, DawneItems.actium, 15));
                         size = 4;
                         repairSpeed = 4f;
@@ -828,6 +828,7 @@ public class DawneBlocks {
                         consumeItems(with(DawneItems.kasev, 2, DawneItems.aspec, 1));
                 }};
 
+                /*
                 assembler = new UnitFactory("assembler"){{
                     requirements(Category.units, with(DawneItems.erum, 80, DawneItems.caris, 120, DawneItems.kasev, 100));
                     size = 3;
@@ -860,6 +861,7 @@ public class DawneBlocks {
                             new UnitType[]{DawneUnitTypes.hymn, DawneUnitTypes.anthem}
                     );
                 }};
+                */
 
                 // a lustre-parallax turret that I'm confused where to put. Effect? Turret?
                 laserTargeter = new TractorBeamTurret("laser-targeter"){{
