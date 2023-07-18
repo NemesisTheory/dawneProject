@@ -33,7 +33,7 @@ public class DawneUnitTypes {
 
     // special
 
-    deathwish, gravedigger, downfall, icarus, solstice, everglow,
+    deathwish,
 
     // core
 
@@ -85,10 +85,10 @@ public class DawneUnitTypes {
                     splashDamage = 180;
                     splashDamageRadius = 40;
                     makeFire = true;
-                    incendAmount = 3;
+                    incendAmount = 2;
                     incendSpread = 6;
-                    incendChance = 0.85f;
-                    shootEffect = Fx.impactReactorExplosion;
+                    incendChance = 0.08f;
+                    shootEffect = Fx.scatheExplosion;
                 }};
             }});
 
@@ -149,7 +149,7 @@ public class DawneUnitTypes {
                 mirror = true;
                 reload = 8;
                 shoot = new ShootAlternate(){{
-                    shots = 4;
+                    shots = 1;
                     barrels = 2;
                 }};
                 inaccuracy = 2;
@@ -196,13 +196,14 @@ public class DawneUnitTypes {
                 x = 3f;
                 shootY = 0f;
                 reload = 12f;
+                cooldownTime = 90f;
                 shootCone = 180f;
                 ejectEffect = Fx.none;
-                inaccuracy = 48f;
+                inaccuracy = 45f;
                 shoot.shots = 6;
                 shoot.shotDelay = 3f;
                 ignoreRotation = true;
-                bullet = new BombBulletType(25f, 16.8f) {{
+                bullet = new BombBulletType(25f, 18.8f) {{
                     width = 8f;
                     height = 10f;
                     hitEffect = Fx.flakExplosion;
@@ -211,12 +212,16 @@ public class DawneUnitTypes {
 
                     status = StatusEffects.blasted;
                     statusDuration = 30f;
+
+                    makeFire = true;
+                    incendAmount = 1;
+                    incendChance = 0.01f;
+                    incendSpread = 2f;
                 }};
             }});
         }};
 
-        deathwish = new UnitType("deathwish") {
-            {
+        deathwish = new UnitType("deathwish") {{
                 health = 12580;
                 constructor = UnitEntity::create;
                 hitSize = 32;
@@ -233,16 +238,14 @@ public class DawneUnitTypes {
 
                 immunities = ObjectSet.with(StatusEffects.shocked, StatusEffects.burning, DawneStatusEffects.destabilized, DawneStatusEffects.shutdown);
 
-                weapons.add(new Weapon("deathwish1") {
-                    {
+                weapons.add(new Weapon("deathwish1") {{
                         top = false;
                         mirror = false;
                         shake = 1;
                         reload = 280;
                         recoil = 64;
                         rotate = false;
-                        bullet = new BasicBulletType(5, 0) {
-                            {
+                        bullet = new BasicBulletType(5, 0) {{
                                 lifetime = 10;
                                 width = 0;
                                 height = 0;
@@ -266,9 +269,8 @@ public class DawneUnitTypes {
                         x = 0;
                         y = 16;
                         shootCone = 12;
-                        shoot = new ShootAlternate(){
-                            {
-                                shots = 4;
+                        shoot = new ShootAlternate(){{
+                                shots = 1;
                                 barrels = 3;
                                 spread = 4f;
                                 shotDelay = 0.5f;
@@ -345,9 +347,8 @@ public class DawneUnitTypes {
                     width = 4;
                     height = 8;
                     lifetime = 32;
-                    shoot = new ShootAlternate(){
-                        {
-                            shots = 3;
+                    shoot = new ShootAlternate(){{
+                            shots = 1;
                             barrels = 3;
                         }};
                     collidesAir = false;

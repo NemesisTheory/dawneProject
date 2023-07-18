@@ -10,7 +10,7 @@ public class DawneItems {
 
     //raw - Dawne
 
-    erum, verent, vasil, rime, sevas, talcPowder,
+    erum, verent, vasil, rime, sevas, talc,
 
     //manufactured - Dawne
 
@@ -68,7 +68,7 @@ public class DawneItems {
         }};
 
         // sand
-        talcPowder = new Item("talc-powder", Color.valueOf("cccccc")){{
+        talc = new Item("talc", Color.valueOf("cccccc")){{
             flammability = 0.4f;
             cost = 1f;
             hardness = 1;
@@ -120,13 +120,13 @@ public class DawneItems {
 
         //side note these names are so bad god damn
 
-        DawneItems.addAll(erum, verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
-        DawneOnlyItems.addAll(erum, verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
+        DawneItems.addAll(erum, verent, vasil, rime, sevas, talc, caris, napalm, kasev, actium, aspec, tavor);
+        DawneOnlyItems.addAll(erum, verent, vasil, rime, sevas, talc, caris, napalm, kasev, actium, aspec, tavor);
 
-        VolirItems.addAll(erum,verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
-        VolirOnlyItems.addAll(erum, verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
+        VolirItems.addAll(erum,verent, vasil, rime, sevas, talc, caris, napalm, kasev, actium, aspec, tavor);
+        VolirOnlyItems.addAll(erum, verent, vasil, rime, sevas, talc, caris, napalm, kasev, actium, aspec, tavor);
 
-        ConcordItems.addAll(erum,verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
-        ConcordOnlyItems.addAll(erum, verent, vasil, rime, sevas, talcPowder, caris, napalm, kasev, actium, aspec, tavor);
+        ConcordItems.addAll(erum,verent, vasil, rime, sevas, talc, caris, napalm, kasev, actium, aspec, tavor);
+        ConcordOnlyItems.addAll(erum, verent, vasil, rime, sevas, talc, caris, napalm, kasev, actium, aspec, tavor);
     }
 }
