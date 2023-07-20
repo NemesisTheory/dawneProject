@@ -1,7 +1,5 @@
 package dawneproject.content;
 
-import arc.graphics.*;
-import dawneproject.content.type.ExtrasStatus;
 import mindustry.type.*;
 
 public class DawneStatusEffects {
@@ -23,9 +21,6 @@ public class DawneStatusEffects {
 
     accelerate,
 
-    // special
-
-    invisible;
 
     public static void load() {
         meltdown = new StatusEffect("meltdown-status"){{
@@ -77,12 +72,6 @@ public class DawneStatusEffects {
         accelerate = new StatusEffect("accelerate"){{
             speedMultiplier = 3.5f;
             dragMultiplier = 0f;
-        }};
-
-        invisible = new ExtrasStatus("invisible"){{
-            show = false;
-            targetable = true;
-            speedMultiplier = 0.8f;
         }};
     }
 }
