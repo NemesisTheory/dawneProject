@@ -84,7 +84,7 @@ public class DawnePlanets {
                 r.hiddenBuildItems.addAll(Vars.content.items());
                 r.hiddenBuildItems.removeAll(DawneItems);
             };
-            unlockedOnLand.add(Blocks.coreNucleus);
+            unlockedOnLand.add(DawneBlocks.coreLegion);
         }};
 
         Vars.content.planets().each(p -> {
