@@ -19,7 +19,7 @@ public class DawneStatusEffects {
 
     // supporting
 
-    accelerate,
+    accelerate;
 
 
     public static void load() {
