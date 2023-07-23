@@ -32,6 +32,9 @@ public class DawneItems {
             hardness = 2;
             radioactivity = 0.15f;
             temperature = -1.24f;
+            explosiveness = 0f;
+            flammability = 0f;
+            charge = 0f;
         }};
 
         // coal
@@ -40,7 +43,9 @@ public class DawneItems {
             cost = 1.0f;
             hardness = 1;
             explosiveness = 0.20f;
+            radioactivity = 0f;
             temperature = 0.25f;
+            charge = 0f;
         }};
 
         // titanium
@@ -55,6 +60,10 @@ public class DawneItems {
         rime = new ExtrasItem("rime", Color.valueOf("a5f2f3")){{
             hardness = 1;
             temperature = -2.4f;
+            explosiveness = 0f;
+            flammability = 0f;
+            radioactivity = 0f;
+            charge = 0f;
         }};
 
         // thorium TODO name change
@@ -88,6 +97,8 @@ public class DawneItems {
             cost = 1f;
             explosiveness = 2.45f;
             temperature = 3.5f;
+            radioactivity = 0f;
+            charge = 0f;
         }};
 
         // plastanium

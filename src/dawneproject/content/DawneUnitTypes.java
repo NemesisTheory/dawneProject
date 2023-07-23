@@ -2,6 +2,7 @@ package dawneproject.content;
 
 import arc.struct.ObjectSet;
 import mindustry.entities.abilities.ForceFieldAbility;
+import mindustry.entities.abilities.ShieldArcAbility;
 import mindustry.entities.abilities.StatusFieldAbility;
 import mindustry.entities.bullet.*;
 import mindustry.entities.pattern.ShootAlternate;
@@ -17,7 +18,6 @@ import mindustry.ai.types.*;
 public class DawneUnitTypes {
 
     public static UnitType
-
 
     // specialist ground
 
@@ -171,6 +171,80 @@ public class DawneUnitTypes {
             abilities.add(new ForceFieldAbility(30f, 0.9f, 140f, 425));
 
             abilities.add(new StatusFieldAbility(StatusEffects.overclock, 220, 520, 185));
+        }};
+
+        misanthrope = new UnitType("misanthrope"){{
+            health = 250;
+            constructor = UnitEntity::create;
+            speed = 1.25f;
+            range = 50;
+            hitSize = 12;
+            armor = 1;
+            rotateSpeed = 8.2f;
+            deathSound = Sounds.explosionbig;
+
+            immunities = ObjectSet.with(DawneStatusEffects.meltdownStatus, StatusEffects.overclock, StatusEffects.melting);
+
+            weapons.add(new Weapon("mg1"){{
+                rotate = false;
+                x = 0;
+                y = 6;
+                reload = 15;
+                recoil = 1.4f;
+                shake = 1.1f;
+                inaccuracy = 2;
+                shootCone = 4;
+                shoot = new ShootAlternate(){{
+                    shots = 1;
+                    barrels = 2;
+                }};
+                bullet = new BasicBulletType(12, 4){{
+                    hitSize = 4;
+                    collidesAir = true;
+                    lifetime = 25;
+                    mirror = true;
+                }};
+            }});
+
+            weapons.add(new Weapon("cnn1"){{
+                rotate = true;
+                x = 0;
+                y = 0;
+                reload = 120;
+                recoil = 1.9f;
+                shake = 1.1f;
+                inaccuracy = 2;
+                shootCone = 4;
+                bullet = new BasicBulletType(4, 55){{
+                    hitSize = 3;
+                    collidesAir = true;
+                    width = 1.5f;
+                    height = 4;
+                    lifetime = 25;
+                }};
+            }});
+
+            abilities.add(new ShieldArcAbility(){{
+                radius = 12f;
+                angle = 82;
+                regen = 0.3f;
+                cooldown = 9f * 60f;
+                max = 80;
+                y = -10;
+                width = 4f;
+                whenShooting = true;
+            }});
+
+            abilities.add(new ShieldArcAbility(){{
+                radius = 12f;
+                angle = 82;
+                regen = 0.3f;
+                cooldown = 9f * 60f;
+                max = 80;
+                y = 10;
+                width = 4f;
+                whenShooting = true;
+            }});
         }};
 
         portent = new UnitType("portent") {{

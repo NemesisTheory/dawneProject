@@ -67,7 +67,8 @@ public class DawneBlocks {
 
     // production - Dawne
 
-    carisPress, kasevForge, actiumSmelter, aspecMixer, tavorSmelter, napalmMixer, camberHeatSink, hypercoolantSynthesizer,
+    carisPress, kasevForge, actiumSmelter, aspecMixer, tavorSmelter, napalmMixer, camberHeatSink,
+    hypercoolantSynthesizer,
 
     // power - Dawne
 
@@ -84,7 +85,8 @@ public class DawneBlocks {
 
     // wall - Dawne
 
-    erumWall, largeErumWall, vasilWall, largeVasilWall, sevasWall, largeSevasWall, tavorWall, largeTavorWall,
+    erumWall, largeErumWall, vasilWall, largeVasilWall, sevasWall, largeSevasWall, compositeWall, largeCompositeWall,
+    tavorWall, largeTavorWall,
 
     // core
 
@@ -96,7 +98,8 @@ public class DawneBlocks {
 
     // unit TODO unit shield proj = adds shields/force shield to unit
 
-    unitRepairStation, unitPrimeRepairStation, unitShieldProjector, assembler, aerialAssembler, enhancer, aerialEnhancer,
+    unitRepairStation, unitPrimeRepairStation, unitShieldProjector, assembler, aerialAssembler, enhancer,
+    aerialEnhancer,
 
     // special TODO groundDisruptor = destabilize ground unit, massDisruptor = destabilize all, totalDistruptor = infilict shutdown, retriever = parallax for ground (name change is inevitable)
 
@@ -104,7 +107,8 @@ public class DawneBlocks {
 
     // effect TODO reinforcer increases block health multip.
 
-    regenerator, massRegenerator, energyProjector, massEnergyProjector, aegisFate, accelerator, primeAccelerator, massAccelerator, reinforcer;
+    regenerator, massRegenerator, energyProjector, massEnergyProjector, aegisFate, accelerator, primeAccelerator,
+    massAccelerator, reinforcer;
 
     public static void load() {
         erumOre = new OreBlock(DawneItems.erum){{
@@ -501,8 +505,8 @@ public class DawneBlocks {
                 inaccuracy = 0.5f;
                 targetAir = false;
                 targetGround = true;
-                coolantMultiplier = 0.65f;
-                coolant = consumeCoolant(0.3f);
+                coolantMultiplier = 0.75f;
+                coolant = consumeCoolant(0.4f);
                 hasLiquids = true;
                 shake = 2f;
                 ammoPerShot = 2;
@@ -522,7 +526,6 @@ public class DawneBlocks {
                             pierceCap = 4;
                             pierce = true;
                             pierceBuilding = true;
-                            hitColor = backColor = trailColor = Color.valueOf("c48282");
                             frontColor = Color.white;
                             trailWidth = 2.1f;
                             trailLength = 10;
@@ -540,7 +543,7 @@ public class DawneBlocks {
                                 pierceCap = 2;
                                 pierce = true;
                                 pierceBuilding = true;
-                                hitColor = backColor = trailColor = Color.valueOf("8a83eb");
+                                hitColor = backColor = trailColor = Color.valueOf("e85d68");
                                 frontColor = Color.white;
                                 reloadMultiplier = 1.15f;
                                 trailWidth = 2.1f;
@@ -585,7 +588,6 @@ public class DawneBlocks {
                                 collidesTiles = false;
                                 shootEffect = Fx.shootBig2;
                                 smokeEffect = Fx.shootSmokeDisperse;
-                                backColor = trailColor = hitColor = frontColor = Color.valueOf("c48282");
                                 trailChance = 0.44f;
                                 ammoMultiplier = 4f;
 
@@ -669,7 +671,6 @@ public class DawneBlocks {
 
                 erumWall = new Wall("erum-wall") {{
                     requirements(Category.defense, with(DawneItems.erum, 8));
-                    size = 1;
                     health = 100 * wallHealthMultiplier;
                     researchCostMultiplier = 0.1f;
                 }};
@@ -678,12 +679,12 @@ public class DawneBlocks {
                     requirements(Category.defense, with(DawneItems.erum, 32));
                     size = 2;
                     health = 100 * 4 * wallHealthMultiplier;
+                    armor = 2;
                     researchCostMultiplier = 0.1f;
                 }};
 
                 vasilWall = new Wall("vasil-wall") {{
                     requirements(Category.defense, with(DawneItems.caris, 4, DawneItems.vasil, 8));
-                    size = 1;
                     health = 180 * wallHealthMultiplier;
                     researchCostMultiplier = 0.2f;
                 }};
@@ -692,12 +693,12 @@ public class DawneBlocks {
                     requirements(Category.defense, with(DawneItems.caris, 16, DawneItems.vasil, 32));
                     size = 2;
                     health = 180 * 4 * wallHealthMultiplier;
+                    armor = 3;
                     researchCostMultiplier = 0.2f;
                 }};
 
                 sevasWall = new Wall("sevas-wall"){{
                     requirements(Category.defense, with(DawneItems.caris, 5, DawneItems.vasil, 6, DawneItems.sevas, 8));
-                    size = 1;
                     health = 250 * wallHealthMultiplier;
                     researchCostMultiplier = 0.2f;
                 }};
@@ -706,12 +707,35 @@ public class DawneBlocks {
                     requirements(Category.defense, with(DawneItems.caris, 20, DawneItems.vasil, 24, DawneItems.sevas, 32));
                     health = 250 * 4 * wallHealthMultiplier;
                     researchCostMultiplier = 0.3f;
+                    size = 2;
+                }};
+
+                compositeWall = new ShieldWall("composite-wall"){{
+                    requirements(Category.defense, with(DawneItems.erum, 10, DawneItems.sevas, 8, DawneItems.aspec, 5, DawneItems.actium, 4));
+                    consumePower(2.2f / 60f);
+
+                    outputsPower = false;
+                    hasPower = true;
+                    conductivePower = true;
+                    consumesPower = true;
+
+                    chanceDeflect = 0.8f;
+
+                    health = 280 * wallHealthMultiplier;
+                    armor = 5f;
+                }};
+
+                largeCompositeWall = new Wall("large-composite-wall"){{
+                    requirements(Category.defense, with(DawneItems.erum, 40, DawneItems.sevas, 32, DawneItems.aspec, 20, DawneItems.actium, 16, DawneItems.vasil, 20));
+                    size = 2;
+                    health = 280 * 4 * wallHealthMultiplier;
+                    researchCostMultiplier = 0.4f;
+                    chanceDeflect = 1;
                 }};
 
                 tavorWall = new Wall("tavor-wall"){{
                     requirements(Category.defense, with(DawneItems.caris, 8, DawneItems.vasil, 6, DawneItems.sevas, 10, DawneItems.tavor, 6));
-                    size = 1;
-                    health = 300 * wallHealthMultiplier;
+                    health = 360 * wallHealthMultiplier;
                     researchCostMultiplier = 0.3f;
                     lightningChance = 0.2f;
                     lightningDamage = 18;
@@ -723,7 +747,7 @@ public class DawneBlocks {
                 largeTavorWall = new Wall("large-tavor-wall"){{
                     requirements(Category.defense, with(DawneItems.caris, 32, DawneItems.vasil, 24, DawneItems.sevas, 40, DawneItems.tavor, 24));
                     size = 2;
-                    health = 300 * 4 * wallHealthMultiplier;
+                    health = 360 * 4 * wallHealthMultiplier;
                     researchCostMultiplier = 0.5f;
                     lightningChance = 0.4f;
                     lightningDamage = 35;

@@ -7,7 +7,7 @@ public class DawneStatusEffects {
 
     // damaging
 
-    meltdown, instantDestroy,
+    meltdownStatus, instantDestroy,
 
     // healing
 
@@ -23,7 +23,7 @@ public class DawneStatusEffects {
 
 
     public static void load() {
-        meltdown = new StatusEffect("meltdown-status"){{
+        meltdownStatus = new StatusEffect("meltdown-status"){{
             speedMultiplier = 0.45f;
             buildSpeedMultiplier = 0.45f;
             dragMultiplier = 0.4f;
