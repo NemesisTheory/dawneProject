@@ -5,21 +5,21 @@ import mindustry.type.*;
 public class DawneStatusEffects {
     public static StatusEffect
 
-    // damaging
+            // damaging
 
-    meltdownStatus, instantDestroy,
+            meltdownStatus, instantDestroy,
 
-    // healing
+            // healing
 
-    regenerating, instantRepair,
+            regenerating, instantRepair,
 
-    // disrupting
+            // disrupting
 
-    destabilized, shutdown, invincibleDisarmedUnmoving,
+            destabilized, shutdown, invincibleDisarmedUnmoving,
 
-    // supporting
+            // supporting
 
-    accelerate;
+            accelerate;
 
 
     public static void load() {

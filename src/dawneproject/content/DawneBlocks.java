@@ -45,70 +45,71 @@ import static mindustry.type.ItemStack.with;
 
 public class DawneBlocks {
     public static Block
-    // ore
+            // ore
 
-    erumOre, vasilOre, sevasOre, verentWallOre,
+            erumOre, vasilOre, sevasOre, verentWallOre,
 
-    // tile
+            // tile
 
-    talc,
+            talc,
 
-    // wall
+            // wall
 
-    iceWall1,
+            iceWall1,
 
-    // distribution - Dawne
+            // distribution - Dawne
 
-    transporter, bridgeTransporter, routerTransporter, aspecConveyor, massTransporter, materialHandlingSystem,
+            transporter, bridgeTransporter, routerTransporter, aspecConveyor, massTransporter,
+            materialHandlingSystem,
 
-    // liquid distribution
+            // liquid distribution
 
-    fluidArch, fluidRouter, fluidTank, fluidRepository, fluidExtractor, thermalFluidExtractor,
+            fluidArch, fluidRouter, fluidTank, fluidRepository, fluidExtractor, thermalFluidExtractor,
 
-    // production - Dawne
+            // production - Dawne
 
-    carisPress, kasevForge, actiumSmelter, aspecMixer, tavorSmelter, napalmMixer, camberHeatSink,
-    hypercoolantSynthesizer,
+            carisPress, kasevForge, actiumSmelter, aspecMixer, tavorSmelter, napalmMixer, camberHeatSink,
+            hypercoolantSynthesizer,
 
-    // power - Dawne
+            // power - Dawne
 
-    energyNode, energySpire, energyRelay, energyCell, accumulator, massCapacitor, thermalCondenser, solarArray,
-    thermonuclearReactor, fusionReactor,
+            energyNode, energySpire, energyRelay, energyCell, accumulator, massCapacitor, thermalCondenser,
+            solarArray, thermonuclearReactor, fusionReactor,
 
-    // drill
+            // drill
 
-    thermalDrill, wallExtractor, rotaryDrill, nuclearDrill, dischargeDrill,
+            thermalDrill, wallExtractor, rotaryDrill, nuclearDrill, dischargeDrill,
 
-    // pewpews - Dawne
+            // pewpews - Dawne
 
-    fracture, rupture, broadside, rend, forebode,
+            fracture, rupture, broadside, rend, forebode,
 
-    // wall - Dawne
+            // wall - Dawne
 
-    erumWall, largeErumWall, vasilWall, largeVasilWall, sevasWall, largeSevasWall, compositeWall, largeCompositeWall,
-    tavorWall, largeTavorWall,
+            erumWall, largeErumWall, vasilWall, largeVasilWall, sevasWall, largeSevasWall, compositeWall,
+            largeCompositeWall, tavorWall, largeTavorWall,
 
-    // core
+            // core
 
-    coreLegion, coreAllegiance, coreDevotion, coreFidelity,
+            coreLegion, coreAllegiance, coreDevotion, coreFidelity,
 
-    // storage
+            // storage
 
-    storageDeposit, largeStorageDeposit, warehouse, dawneUnloader,
+            storageDeposit, largeStorageDeposit, warehouse, dawneUnloader,
 
-    // unit TODO unit shield proj = adds shields/force shield to unit
+            // unit TODO unit shield proj = adds shields/force shield to unit
 
-    unitRepairStation, unitPrimeRepairStation, unitShieldProjector, assembler, aerialAssembler, enhancer,
-    aerialEnhancer,
+            unitRepairStation, unitPrimeRepairStation, unitShieldProjector, assembler, aerialAssembler, enhancer,
+            aerialEnhancer,
 
-    // special TODO groundDisruptor = destabilize ground unit, massDisruptor = destabilize all, totalDistruptor = infilict shutdown, retriever = parallax for ground (name change is inevitable)
+            // special TODO groundDisruptor = destabilize ground unit, massDisruptor = destabilize all, totalDistruptor = infilict shutdown, retriever = parallax for ground (name change is inevitable)
 
-    airspaceControl, groundDisruptor, massDisruptor, totalDisruptor, laserTargeter,
+            airspaceControl, groundDisruptor, massDisruptor, totalDisruptor, laserTargeter,
 
-    // effect TODO reinforcer increases block health multip.
+            // effect TODO reinforcer increases block health multip.
 
-    regenerator, massRegenerator, energyProjector, massEnergyProjector, aegisFate, accelerator, primeAccelerator,
-    massAccelerator, reinforcer;
+            regenerator, massRegenerator, energyProjector, massEnergyProjector, aegisFate, accelerator,
+            primeAccelerator, massAccelerator, reinforcer;
 
     public static void load() {
         erumOre = new OreBlock(DawneItems.erum){{
@@ -731,6 +732,13 @@ public class DawneBlocks {
                     health = 280 * 4 * wallHealthMultiplier;
                     researchCostMultiplier = 0.4f;
                     chanceDeflect = 1;
+
+                    consumePower(5f / 60f);
+
+                    consumesPower = true;
+                    conductivePower = true;
+                    hasPower = true;
+                    outputsPower = false;
                 }};
 
                 tavorWall = new Wall("tavor-wall"){{
@@ -764,7 +772,7 @@ public class DawneBlocks {
                     size = 3;
                     armor = 2;
                     itemCapacity = 13000;
-                    unitCapModifier = 15;
+                    unitCapModifier = 12;
                     unitType = DawneUnitTypes.contingent;
                     researchCostMultiplier = 0.12f;
                 }};
@@ -775,7 +783,7 @@ public class DawneBlocks {
                     size = 4;
                     armor = 4f;
                     itemCapacity = 14000;
-                    unitCapModifier = 28;
+                    unitCapModifier = 18;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.2f;
                 }};
@@ -786,7 +794,7 @@ public class DawneBlocks {
                     size = 6;
                     armor = 12f;
                     itemCapacity = 18000;
-                    unitCapModifier = 35;
+                    unitCapModifier = 25;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.24f;
                 }};
@@ -799,7 +807,7 @@ public class DawneBlocks {
                     size = 5;
                     armor = 8f;
                     itemCapacity = 13500;
-                    unitCapModifier = 42;
+                    unitCapModifier = 32;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.4f;
                 }};
@@ -819,7 +827,7 @@ public class DawneBlocks {
 
                 warehouse = new StorageBlock("warehouse"){{
                     requirements(Category.effect, with(DawneItems.vasil, 800, DawneItems.sevas, 500, DawneItems.caris, 400, DawneItems.kasev, 700));
-                    size = 8;
+                    size = 6;
                     itemCapacity = 6000;
                     coreMerge = false;
                 }};
@@ -960,7 +968,7 @@ public class DawneBlocks {
                 aegisFate = new BaseShield("aegis-fate"){{
                     requirements(Category.effect, with(DawneItems.erum, 600, DawneItems.vasil, 200, DawneItems.caris, 600, DawneItems.kasev, 560, DawneItems.aspec, 250, DawneItems.actium, 100, DawneItems.tavor, 200));
                     size = 6;
-                    radius = 90;
+                    radius = 80;
 
                     consumePower(30f);
                     consumeItems(with(DawneItems.kasev, 3, DawneItems.aspec, 2, DawneItems.tavor, 1));

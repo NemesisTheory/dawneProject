@@ -17,15 +17,15 @@ import static dawneproject.content.DawneLiquids.*;
 public class DawnePlanets {
     public static Planet
 
-    // sun
+            // sun
 
-    kaeva,
+            kaeva,
 
-    // planet
+            // planet
 
-    volir, dawne, concord;
+            volir, dawne, concord;
 
-    // asteroids
+            // asteroids
 
     public static void load() {
         kaeva = new Planet("kaeva", Planets.sun, 8){{

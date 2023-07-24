@@ -19,25 +19,25 @@ public class DawneUnitTypes {
 
     public static UnitType
 
-    // specialist ground
+            // specialist ground
 
-    hymn, anthem, serenade, symphony, euphony,
+            hymn, anthem,
 
-    // assault ground
+            // assault ground
 
-    misanthrope, naysayer, despondent, nihilist, fatalist,
+            misanthrope,
 
-    // assault aerial
+            // assault aerial
 
-    portent, premonition, doomsday, hereafter, damnation,
+            portent,
 
-    // special
+            // special
 
-    deathwish,
+            deathwish,
 
-    // core
+            // core
 
-    contingent;
+            contingent;
 
     public static void load() {
 
@@ -277,6 +277,7 @@ public class DawneUnitTypes {
                 shoot.shots = 6;
                 shoot.shotDelay = 3f;
                 ignoreRotation = true;
+                controllable = false;
                 bullet = new BombBulletType(25f, 18.8f) {{
                     width = 8f;
                     height = 10f;
@@ -317,13 +318,14 @@ public class DawneUnitTypes {
                         mirror = false;
                         shake = 1;
                         reload = 280;
-                        recoil = 64;
+                        recoil = 4;
                         rotate = false;
                         bullet = new BasicBulletType(5, 0) {{
                                 lifetime = 10;
                                 width = 0;
                                 height = 0;
                                 hitSize = 0;
+                                recoil = -10f;
                             }
                         };
                     }
@@ -381,6 +383,7 @@ public class DawneUnitTypes {
             hitSize = 16;
             rotateSpeed = 16;
             itemCapacity = 25;
+            drag = 0.05f;
 
             immunities = ObjectSet.with(StatusEffects.melting, DawneStatusEffects.destabilized);
 
@@ -392,7 +395,6 @@ public class DawneUnitTypes {
                 recoil = 3.6f;
                 shake = 2;
                 shootSound = Sounds.laser;
-                drag = 0.011f;
                 bullet = new LaserBulletType(120){{
                     status = DawneStatusEffects.destabilized;
                     statusDuration = 30;

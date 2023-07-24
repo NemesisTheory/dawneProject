@@ -8,13 +8,13 @@ import mindustry.type.Item;
 public class DawneItems {
     public static Item
 
-    //raw - Dawne
+            //raw - Dawne
 
-    erum, verent, vasil, rime, sevas, talc,
+            erum, verent, vasil, rime, sevas, talc,
 
-    //manufactured - Dawne
+            //manufactured - Dawne
 
-    caris, napalm, kasev, actium, aspec, tavor;
+            caris, napalm, kasev, actium, aspec, tavor;
 
     public static Seq<Item> DawneItems = new Seq<>();
     public static Seq<Item> DawneOnlyItems = new Seq<>();
