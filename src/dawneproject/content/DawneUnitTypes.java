@@ -277,7 +277,6 @@ public class DawneUnitTypes {
                 shoot.shots = 6;
                 shoot.shotDelay = 3f;
                 ignoreRotation = true;
-                controllable = false;
                 bullet = new BombBulletType(25f, 18.8f) {{
                     width = 8f;
                     height = 10f;
