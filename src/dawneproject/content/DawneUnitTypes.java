@@ -58,7 +58,7 @@ public class DawneUnitTypes {
             legGroupSize = 3;
             allowLegStep = true;
             drawShields = true;
-            range = 50;
+            range = 40;
             mechSideSway = 0.3f;
             deathSound = Sounds.explosionbig;
 
@@ -83,7 +83,7 @@ public class DawneUnitTypes {
                     hittable = false;
                     collidesAir = true;
                     splashDamage = 180;
-                    splashDamageRadius = 40;
+                    splashDamageRadius = 50;
                     makeFire = true;
                     incendAmount = 2;
                     incendSpread = 6;
@@ -148,9 +148,13 @@ public class DawneUnitTypes {
                 y = -3;
                 mirror = true;
                 reload = 8;
-                shoot = new ShootAlternate(){{
+                shoot = new ShootBarrel(){{
+                    barrels = new float[]{
+                           -1, -1,
+                            0, 0,
+                            1, 1,
+                    };
                     shots = 1;
-                    barrels = 2;
                 }};
                 inaccuracy = 2;
                 shootCone = 8;
@@ -194,9 +198,13 @@ public class DawneUnitTypes {
                 shake = 1.1f;
                 inaccuracy = 2;
                 shootCone = 4;
-                shoot = new ShootAlternate(){{
+                shoot = new ShootBarrel(){{
+                    barrels = new float[]{
+                            0, 1, 0,
+                            1, 0, 1,
+                            0, 1, 0,
+                    };
                     shots = 1;
-                    barrels = 2;
                 }};
                 bullet = new BasicBulletType(12, 4){{
                     hitSize = 4;
@@ -319,12 +327,13 @@ public class DawneUnitTypes {
                         reload = 280;
                         recoil = 4;
                         rotate = false;
-                        bullet = new BasicBulletType(5, 0) {{
-                                lifetime = 10;
+                        bullet = new ContinuousLaserBulletType(0) {{
+                                lifetime = 28;
                                 width = 0;
-                                height = 0;
+                                length = 0;
+                                drawSize = 0;
                                 hitSize = 0;
-                                recoil = -10f;
+                                recoil = -20f;
                             }
                         };
                     }
@@ -344,10 +353,13 @@ public class DawneUnitTypes {
                         x = 0;
                         y = 16;
                         shootCone = 12;
-                        shoot = new ShootAlternate(){{
+                        shoot = new ShootBarrel(){{
+                            barrels = new float[]{
+                                   -1, -1,
+                                    0, 0,
+                                    1, 1,
+                            };
                                 shots = 1;
-                                barrels = 3;
-                                spread = 4f;
                                 shotDelay = 0.5f;
                                 width = 10;
                             }};
@@ -422,9 +434,13 @@ public class DawneUnitTypes {
                     width = 4;
                     height = 8;
                     lifetime = 32;
-                    shoot = new ShootAlternate(){{
+                    shoot = new ShootBarrel(){{
+                        barrels = new float[]{
+                        6, 0, 0,
+                       -6, 0, 0,
+                        0, 6, 0,
+                        };
                             shots = 1;
-                            barrels = 3;
                         }};
                     collidesAir = false;
                     absorbable = true;

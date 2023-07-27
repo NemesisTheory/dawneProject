@@ -6,6 +6,7 @@ import dawneproject.content.world.blocks.power.ThermonuclearReactor;
 import mindustry.entities.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.*;
+import mindustry.entities.pattern.ShootBarrel;
 import mindustry.graphics.Pal;
 import mindustry.type.LiquidStack;
 import mindustry.type.UnitType;
@@ -38,10 +39,12 @@ import mindustry.world.blocks.units.RepairTower;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.storage.StorageBlock;
 import mindustry.world.blocks.units.UnitFactory;
+import mindustry.world.consumers.ConsumeLiquid;
 import mindustry.world.draw.DrawLiquidOutputs;
 import mindustry.world.meta.BlockGroup;
 
 import static mindustry.type.ItemStack.with;
+import static mindustry.world.meta.BuildVisibility.sandboxOnly;
 
 public class DawneBlocks {
     public static Block
@@ -58,7 +61,6 @@ public class DawneBlocks {
             iceWall1,
 
             // distribution - Dawne
-
             transporter, bridgeTransporter, routerTransporter, aspecConveyor, massTransporter,
             materialHandlingSystem,
 
@@ -82,7 +84,7 @@ public class DawneBlocks {
 
             // pewpews - Dawne
 
-            fracture, rupture, broadside, rend, forebode,
+            fracture, rupture, beleaguer, broadside, rend, forebode, killer,
 
             // wall - Dawne
 
@@ -515,6 +517,8 @@ public class DawneBlocks {
                 size = 3;
                 rotateSpeed = 4.5f;
                 researchCostMultiplier = 0.05f;
+                coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
+                coolant = consume(new ConsumeLiquid(DawneLiquids.camberCoolant, 12f / 60f));
                 ammo(
                         DawneItems.verent, new BasicBulletType(8f, 15) {{
                             lifetime = 17.5f;
@@ -564,11 +568,6 @@ public class DawneBlocks {
                 reload = 16f;
                 shootCone = 12f;
                 inaccuracy = 8f;
-                shoot = new ShootAlternate(){{
-                        spread = 7f;
-                        shots = 3;
-                        barrels = 3;
-                    }};
                 targetAir = true;
                 targetGround = false;
                 coolantMultiplier = 0.8f;
@@ -578,6 +577,7 @@ public class DawneBlocks {
                 size = 4;
                 rotateSpeed = 8.5f;
                 researchCostMultiplier = 0.06f;
+                coolant = consume(new ConsumeLiquid(Liquids.water, 11f / 60f));
                 ammo(
                         DawneItems.verent, new BasicBulletType(4.25f, 15) {{
                                 pierce = true;
@@ -619,6 +619,91 @@ public class DawneBlocks {
 
                             hitEffect = despawnEffect = Fx.hitBulletColor;
                 }});
+
+                beleaguer = new ItemTurret("beleaguer"){{
+                    requirements(Category.turret, with(DawneItems.erum, 320, DawneItems.caris, 255, DawneItems.vasil, 120, DawneItems.kasev, 120));
+                    size = 3;
+                    range = 290;
+                    targetAir = false;
+                    reload = 320;
+                    shoot = new ShootBarrel(){{
+                        barrels = new float[]{
+                                0, 6, 0,
+                                0, 0, 0,
+                                0, -6, 0,
+                        };
+                        shots = 3;
+                    }};
+                    inaccuracy = 2;
+                    shootCone = 3;
+                    recoil = 2.8f;
+                    shake = 1.2f;
+                    recoilTime = -1;
+                    maxAmmo = 15;
+                    ammoUseEffect = Fx.casing3;
+                    ammoEjectBack = 3;
+                    displayAmmoMultiplier = true;
+                    rotateSpeed = 15;
+                    shootSound = Sounds.mediumCannon;
+                    coolantMultiplier = 0.64f;
+                    coolant = consume(new ConsumeLiquid(Liquids.water, 18f / 60f));
+                    ammo(
+                            DawneItems.vasil, new BasicBulletType(24, 45){
+                                {
+                                    ammoMultiplier = 2;
+                                    hitSize = 5;
+                                    width = 12;
+                                    height = 16;
+                                    shootEffect = Fx.shootBig;
+                                    lifetime = 11;
+                                    collidesAir = false;
+                                    knockback = 2.68f;
+                                    pierce = true;
+                                    pierceCap = 3;
+                                    pierceBuilding = true;
+                                    pierceArmor = true;
+                                    hittable = true;
+                                    buildingDamageMultiplier = 0.75f;
+                                }},
+                            DawneItems.napalm, new BasicBulletType(24, 25){{
+                                    ammoMultiplier = 3;
+                                    splashDamage = 70;
+                                    splashDamageRadius = 26.5f;
+                                    hitSize = 4;
+                                    width = 12;
+                                    height = 16;
+                                    shootEffect = Fx.shootBig;
+                                    lifetime = 11;
+                                    collidesAir = false;
+                                    knockback = 1.88f;
+                                    pierce = true;
+                                    pierceCap = 2;
+                                    pierceBuilding = true;
+                                    pierceArmor = true;
+                                    hittable = true;
+                                    buildingDamageMultiplier = 0.75f;
+                                    makeFire = true;
+                                    incendAmount = 1;
+                                    incendSpread = 5;
+                                    incendChance = 0.05f;
+                                }},
+                            DawneItems.sevas, new BasicBulletType(24, 62){{
+                                ammoMultiplier = 2;
+                                hitSize = 5;
+                                width = 16;
+                                height = 16;
+                                shootEffect = Fx.shootBig;
+                                lifetime = 11;
+                                collidesAir = false;
+                                knockback = 3.22f;
+                                pierce = true;
+                                pierceCap = 6;
+                                pierceBuilding = true;
+                                pierceArmor = true;
+                                hittable = true;
+                                buildingDamageMultiplier = 0.7f;
+                            }});
+                }};
 
                 //status effect inflictor basically TODO remove overdriveability
                 rend = new ItemTurret("rend"){{
@@ -664,6 +749,21 @@ public class DawneBlocks {
                                 status = DawneStatusEffects.destabilized;
                                 statusDuration = 140;
                                 hittable = false;
+                            }}
+                    );
+                }};
+
+                killer = new ItemTurret("killer"){{
+                    health = 500000000;
+                    reload = 300;
+                    recoil = 500000;
+                    buildVisibility = sandboxOnly;
+                    ammo(
+                            DawneItems.rime, new BasicBulletType(){{
+                                damage = 500000000;
+                                pierce = true;
+                                pierceBuilding = true;
+                                pierceCap = 500000000;
                             }}
                     );
                 }};
