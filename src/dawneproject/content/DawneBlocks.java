@@ -754,10 +754,10 @@ public class DawneBlocks {
                 }};
 
                 killer = new ItemTurret("killer"){{
+                    requirements(Category.turret, with(DawneItems.rime, 1));
                     health = 500000000;
                     reload = 300;
                     recoil = 500000;
-                    buildVisibility = sandboxOnly;
                     ammo(
                             DawneItems.rime, new BasicBulletType(){{
                                 damage = 500000000;
