@@ -756,11 +756,12 @@ public class DawneBlocks {
                 killer = new ItemTurret("killer"){{
                     requirements(Category.turret, with(DawneItems.rime, 1));
                     health = 500000000;
-                    reload = 60;
+                    reload = 60 ;
                     recoil = 500000;
                     ammo(
                             DawneItems.rime, new BasicBulletType(){{
                                 damage = 500000000;
+                                lifetime = 20;
                                 pierce = true;
                                 pierceBuilding = true;
                                 pierceCap = 500000000;

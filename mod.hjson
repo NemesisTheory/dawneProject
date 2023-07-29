@@ -1,7 +1,7 @@
 #the mod name as displayed in-game
 displayName: "dawneProject"
 
-subtitle: "you are fuck"
+subtitle: "you am i"
 
 #the internal name of your mod
 name: "dawneproject"
@@ -13,7 +13,7 @@ author: "NemesisTheory (ForwardUntoDawn)"
 main: "dawneproject.DawneProject"
 
 #the mod description as seen in the mod dialog
-description: "amongi \n\n\nyou are fuck"
+description: "you am i \n\n this mod is incredibly unfinished and fucking sucks"
 
 #the mod version
 version: 0.2
