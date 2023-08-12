@@ -2,7 +2,7 @@ package dawneproject.content;
 
 import arc.graphics.Color;
 import arc.struct.Seq;
-import dawneproject.content.type.ExtrasItem;
+import dawneproject.content.type.DawneItem;
 import mindustry.type.Item;
 
 public class DawneItems {
@@ -27,7 +27,7 @@ public class DawneItems {
 
     public static void load() {
         // copper + lead
-        erum = new ExtrasItem("erum", Color.valueOf("3f3f3f")){{
+        erum = new DawneItem("erum", Color.valueOf("3f3f3f")){{
             cost = 1.0f;
             hardness = 2;
             radioactivity = 0.15f;
@@ -38,7 +38,7 @@ public class DawneItems {
         }};
 
         // coal
-        verent = new ExtrasItem("verent", Color.valueOf("151515")){{
+        verent = new DawneItem("verent", Color.valueOf("151515")){{
             flammability = 0.15f;
             cost = 1.0f;
             hardness = 1;
@@ -57,7 +57,7 @@ public class DawneItems {
         }};
 
         // titanium v2
-        rime = new ExtrasItem("rime", Color.valueOf("a5f2f3")){{
+        rime = new DawneItem("rime", Color.valueOf("a5f2f3")){{
             hardness = 1;
             temperature = -2.4f;
             explosiveness = 0f;
@@ -92,7 +92,7 @@ public class DawneItems {
         }};
 
         // pyratite + blast compound
-        napalm = new ExtrasItem("napalm", Color.valueOf("cf5a3a")){{
+        napalm = new DawneItem("napalm", Color.valueOf("cf5a3a")){{
             flammability = 3f;
             cost = 1f;
             explosiveness = 2.45f;

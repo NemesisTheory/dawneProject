@@ -1,21 +1,23 @@
 package dawneproject.content;
 
 import arc.graphics.Color;
-import arc.struct.Seq;
 import dawneproject.content.world.blocks.power.ThermonuclearReactor;
 import mindustry.entities.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.effect.*;
 import mindustry.entities.pattern.ShootBarrel;
+import mindustry.entities.pattern.ShootSpread;
 import mindustry.graphics.Pal;
+import mindustry.type.Category;
+import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
-import mindustry.type.UnitType;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.TractorBeamTurret;
 import mindustry.world.blocks.distribution.*;
+import mindustry.gen.Sounds;
 import mindustry.content.Fx;
-import mindustry.type.Category;
-import mindustry.type.ItemStack;
+import mindustry.content.UnitTypes;
+import mindustry.content.Liquids;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
@@ -25,26 +27,17 @@ import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.BeamDrill;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.defense.*;
-import mindustry.gen.Sounds;
-import mindustry.content.Liquids;
 import mindustry.world.blocks.production.Pump;
 import mindustry.world.blocks.storage.CoreBlock;
-import mindustry.entities.pattern.ShootAlternate;
-import mindustry.entities.pattern.ShootSpread;
-import mindustry.content.UnitTypes;
 import mindustry.world.blocks.storage.Unloader;
-import mindustry.world.blocks.units.Reconstructor;
 import mindustry.world.blocks.units.RepairTurret;
 import mindustry.world.blocks.units.RepairTower;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.storage.StorageBlock;
-import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.consumers.ConsumeLiquid;
-import mindustry.world.draw.DrawLiquidOutputs;
 import mindustry.world.meta.BlockGroup;
 
 import static mindustry.type.ItemStack.with;
-import static mindustry.world.meta.BuildVisibility.sandboxOnly;
 
 public class DawneBlocks {
     public static Block
@@ -84,7 +77,7 @@ public class DawneBlocks {
 
             // pewpews - Dawne
 
-            fracture, rupture, beleaguer, broadside, rend, forebode, killer,
+            fracture, rupture, beleaguer, broadside, rend, downfall, forebode, meteor, killer,
 
             // wall - Dawne
 

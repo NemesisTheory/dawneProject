@@ -5,10 +5,10 @@ import mindustry.type.Item;
 import mindustry.world.meta.Stat;
 
 // pro name
-public class ExtrasItem extends Item {
+public class DawneItem extends Item {
     public Color color;
 
-    // cold stuff TODO add purpose
+    /** something */
     public float temperature = 0f;
     public float conductivity = 0f;
     public float explosiveness = 0f;
@@ -16,11 +16,16 @@ public class ExtrasItem extends Item {
     public float radioactivity;
     public float charge = 0f;
 
-    public ExtrasItem(String name, Color color) {
+    public DawneItem(String name, Color color) {
         super(name, color);
     }
 
+    @Override
     public void setStats(){
         stats.addPercent(Stat.temperature, temperature);
+        stats.addPercent(Stat.explosiveness, explosiveness);
+        stats.addPercent(Stat.flammability, flammability);
+        stats.addPercent(Stat.radioactivity, radioactivity);
+        stats.addPercent(Stat.charge, charge);
     }
 }
