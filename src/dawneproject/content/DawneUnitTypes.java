@@ -27,30 +27,30 @@ public class DawneUnitTypes {
 
             hymn, anthem,
 
-    // assault ground (mech)
+            // assault ground (mech)
 
-    misanthrope,
+            misanthrope,
 
-    // secondary assault ground (tank)
+            // secondary assault ground (tank)
 
-    gleam, radiance, everglow, incandescence,
+            gleam, radiance, everglow, incandescence,
 
-    // assault aerial
+            // assault aerial
 
-    portent,
+            portent,
 
-    /* special
-     * tier 4 to tier 6 in strength, this is gonna be a pain to balance
-     * 4: Deathwish
-     * 5: Gravedigger, Northlane
-     * 6: Daybreaker, Architect, Alpha Omega
-     */
+            /* special
+            * tier 4 to tier 6 in strength, this is gonna be a pain to balance
+            * 4: Deathwish
+            * 5: Gravedigger, Northlane
+            * 6: Daybreaker, Architect, Alpha Omega
+            */
 
-    deathwish, gravedigger, northlane, daybreaker, architect, ao,
+            deathwish, gravedigger, northlane, daybreaker, architect, ao,
 
-    // core
+            // core
 
-    contingent;
+            contingent;
 
     public static void load() {
 
@@ -279,7 +279,7 @@ public class DawneUnitTypes {
                 treadRects = new Rect[]{new Rect(16 - 60f, 48 - 70f, 30, 75), new Rect(44 - 60f, 17 - 70f, 17, 60)};
 
                 constructor = TankUnit::create;
-                weapons.add(new Weapon("gleam-weapon") {{
+                weapons.add(new Weapon("dawneproject-gleam-weapon") {{
                     shootSound = Sounds.dullExplosion;
                     layerOffset = 0.0001f;
                     reload = 80f;
