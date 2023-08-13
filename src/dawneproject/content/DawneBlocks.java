@@ -1,6 +1,7 @@
 package dawneproject.content;
 
 import arc.graphics.Color;
+import arc.struct.Seq;
 import dawneproject.content.world.blocks.power.ThermonuclearReactor;
 import mindustry.entities.*;
 import mindustry.entities.bullet.BasicBulletType;
@@ -11,6 +12,7 @@ import mindustry.graphics.Pal;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
+import mindustry.type.UnitType;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.TractorBeamTurret;
 import mindustry.world.blocks.distribution.*;
@@ -30,10 +32,12 @@ import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.production.Pump;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.blocks.storage.Unloader;
+import mindustry.world.blocks.units.Reconstructor;
 import mindustry.world.blocks.units.RepairTurret;
 import mindustry.world.blocks.units.RepairTower;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.storage.StorageBlock;
+import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.consumers.ConsumeLiquid;
 import mindustry.world.meta.BlockGroup;
 
@@ -95,7 +99,7 @@ public class DawneBlocks {
             // unit TODO unit shield proj = adds shields/force shield to unit
 
             unitRepairStation, unitPrimeRepairStation, unitShieldProjector, assembler, aerialAssembler, enhancer,
-            aerialEnhancer,
+            aerialEnhancer, tankConstructor, Enhancer,
 
             // special TODO groundDisruptor = destabilize ground unit, massDisruptor = destabilize all, totalDistruptor = infilict shutdown, retriever = parallax for ground (name change is inevitable)
 
@@ -866,7 +870,7 @@ public class DawneBlocks {
                     size = 3;
                     armor = 2;
                     itemCapacity = 13000;
-                    unitCapModifier = 12;
+                    unitCapModifier = 10;
                     unitType = DawneUnitTypes.contingent;
                     researchCostMultiplier = 0.12f;
                 }};
@@ -877,7 +881,7 @@ public class DawneBlocks {
                     size = 4;
                     armor = 4f;
                     itemCapacity = 14000;
-                    unitCapModifier = 18;
+                    unitCapModifier = 16;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.2f;
                 }};
@@ -888,7 +892,7 @@ public class DawneBlocks {
                     size = 6;
                     armor = 12f;
                     itemCapacity = 18000;
-                    unitCapModifier = 25;
+                    unitCapModifier = 24;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.24f;
                 }};
@@ -901,7 +905,7 @@ public class DawneBlocks {
                     size = 5;
                     armor = 8f;
                     itemCapacity = 13500;
-                    unitCapModifier = 32;
+                    unitCapModifier = 30;
                     unitType = UnitTypes.gamma;
                     researchCostMultiplier = 0.4f;
                 }};
@@ -954,11 +958,10 @@ public class DawneBlocks {
                         consumeItems(with(DawneItems.kasev, 2, DawneItems.aspec, 1));
                 }};
 
-                /*
                 assembler = new UnitFactory("assembler"){{
                     requirements(Category.units, with(DawneItems.erum, 80, DawneItems.caris, 120, DawneItems.kasev, 100));
                     size = 3;
-                    consumePower(1.5f);
+                    consumePower(2.5f);
                     plans = Seq.with(
                             new UnitPlan(DawneUnitTypes.hymn, 60f * 18, with(DawneItems.kasev, 15, DawneItems.verent, 20)),
                             new UnitPlan(DawneUnitTypes.misanthrope, 60f * 25, with(DawneItems.kasev, 20, DawneItems.caris, 15))
@@ -968,9 +971,9 @@ public class DawneBlocks {
                 aerialAssembler = new UnitFactory("aerial-assembler"){{
                     requirements(Category.units, with(DawneItems.erum, 90, DawneItems.caris, 80));
                     size = 3;
-                    consumePower(1.6f);
+                    consumePower(2.8f);
                     plans = Seq.with(
-                            new UnitPlan(DawneUnitTypes.portent, 60f * 28, with(DawneItems.kasev, 20, DawneItems.caris, 25))
+                            new UnitFactory.UnitPlan(DawneUnitTypes.portent, 60f * 28, with(DawneItems.kasev, 20, DawneItems.caris, 25))
                     );
                 }};
 
@@ -987,7 +990,6 @@ public class DawneBlocks {
                             new UnitType[]{DawneUnitTypes.hymn, DawneUnitTypes.anthem}
                     );
                 }};
-                */
 
                 // a lustre-parallax turret that I'm confused where to put. Effect? Turret?
                 laserTargeter = new TractorBeamTurret("laser-targeter"){{

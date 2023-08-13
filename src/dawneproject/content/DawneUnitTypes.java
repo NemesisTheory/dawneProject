@@ -508,9 +508,9 @@ public class DawneUnitTypes {
                             lifetime = 22;
                             shoot = new ShootBarrel() {{
                                 barrels = new float[]{
-                                        6, 0, 0,
-                                        -6, 0, 0,
-                                        0, 6, 0,
+                                        2, 0, 0,
+                                        -2, 0, 0,
+                                        0, 2, 0,
                                 };
                                 shots = 1;
                             }};

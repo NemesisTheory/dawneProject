@@ -12,8 +12,8 @@ public class DawneProject extends Mod{
         DawneItems.load();
         DawneLiquids.load();
         DawneStatusEffects.load();
-        DawneBlocks.load();
         DawneUnitTypes.load();
+        DawneBlocks.load();
         DawnePlanets.load();
     }
 }
