@@ -19,7 +19,7 @@ public class DawnePlanets {
 
             // sun
 
-            kaeva,
+            accord,
 
             // planet
 
@@ -28,8 +28,8 @@ public class DawnePlanets {
             // asteroids
 
     public static void load() {
-        kaeva = new Planet("kaeva", Planets.sun, 8){{
-            meshLoader = () -> new SunMesh(kaeva,
+        accord = new Planet("accord", Planets.sun, 8){{
+            meshLoader = () -> new SunMesh(accord,
                     4, 5, 0.3, 2, 1.2, 1, 1.1f,
                     Color.valueOf("ffffff"), Color.valueOf("d7d3c6"), Color.valueOf("f7ca43"), Color.valueOf("e3c56b"), Color.valueOf("de9a97"), Color.valueOf("b39896"));
             bloom = true;
@@ -55,7 +55,7 @@ public class DawnePlanets {
             allowLaunchSchematics = false;
             launchCapacityMultiplier = 0.75f;
             clearSectorOnLose = true;
-            // for testing TODO change back to Kaeva + this fails to function - Dawne is INSIDE the sun
+            // for testing TODO change back to accord + this fails to function - Dawne is INSIDE the sun
             camRadius = 0.5f;
             orbitSpacing = 2f;
             radius = 3f;
@@ -91,6 +91,6 @@ public class DawnePlanets {
             if (p == dawne) return;
             p.hiddenItems.addAll(DawneOnlyItems);
         });
-        kaeva.parent = kaeva;
+        accord.parent = accord;
     }
 }
